@@ -15,7 +15,7 @@
 > finally, a certificate is generated.
 > &nbsp; <br /><br />
 
-### 🏠 [Homepage](https://github.com/task-er/Pokecert)
+### 🏠 [Homepage](https://common-dev.tistory.com/entry/Pokecert)
 
 ## Prerequisites
 
