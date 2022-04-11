@@ -25,9 +25,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "stylelint": "stylelint **/*.*css",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "stylelint": "stylelint **/*.*css"
   },
   "eslintConfig": {
     "extends": [
@@ -36,9 +34,6 @@
     ],
     "overrides": [
       {
-        "files": [
-          "**/*.stories.*"
-        ],
         "rules": {
           "import/no-anonymous-default-export": "off"
         }
@@ -58,12 +53,6 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/node-logger": "^6.2.9",
-    "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.2.9",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",
     "craco-alias": "^3.0.1",
