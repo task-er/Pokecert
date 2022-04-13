@@ -12,7 +12,7 @@
 </p>
 
 > This is a collection of Pokemon stickers that are popular these days. <br />
-> finally, a certificate is generated.
+> finally, a certificate can be generated.
 > &nbsp; <br /><br />
 
 ### 🏠 [Homepage](https://common-dev.tistory.com/entry/Pokecert)
@@ -33,6 +33,17 @@ npm install
 ```sh
 npm start
 ```
+
+## Cypress Usage
+```sh
+yarn cypress open
+```
+
+## Stylelint Usage
+```sh
+yarn stylelint
+```
+
 
 ## Author
 
