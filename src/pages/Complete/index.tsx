@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const List = (): ReactElement => {
+// note: 해당 페이지는 컬렉션 완료되면 이동되는 페이지로, pdf를 다운받을 수 있다.
+const Complete = (): ReactElement => {
   const navigate = useNavigate()
 
   const goBack = () => {
@@ -16,4 +17,4 @@ const List = (): ReactElement => {
   )
 }
 
-export default List
+export default Complete

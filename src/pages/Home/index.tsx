@@ -18,7 +18,7 @@ const Home = (): ReactElement => {
   }
 
   return (
-    <div className="App">
+    <div className="home">
       <img src={mu} alt="character1" />
       <p>Pokecert.</p>
       <button onClick={moveToList}>띠부띠부씰 종류 보기</button>
