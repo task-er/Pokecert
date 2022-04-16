@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react'
-import '@dir/App.css'
 import { useNavigate } from 'react-router-dom'
 
-const SelectionPage = (): ReactElement => {
+const Selection = (): ReactElement => {
   const navigate = useNavigate()
 
   const goBack = () => {
@@ -17,4 +16,4 @@ const SelectionPage = (): ReactElement => {
   )
 }
 
-export default SelectionPage
+export default Selection
