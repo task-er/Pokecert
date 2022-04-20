@@ -14,7 +14,7 @@ const App = (): ReactElement => (
     <Route path="/List" element={<List />} />
     <Route path="/Collection" element={<Collection />} />
     <Route path="/Selection" element={<Selection />} />
-    <Route element={<>Not Found.</>} />
+    <Route path="/*" element={<>Not Found.</>} />
   </Routes>
 )
 
