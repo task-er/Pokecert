@@ -1,3 +1,17 @@
-div.home {
+div.home-wrapper {
   background-color: #333;
+  box-sizing: border-box;
+  text-align: center;
+  height: 100vh;
+  padding: 30px 10%;
+}
+
+div.home-layout {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5px;
+
+  & > button {
+    grid-column: 1 / 3;
+  }
 }

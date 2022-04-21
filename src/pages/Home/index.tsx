@@ -18,12 +18,14 @@ const Home = (): ReactElement => {
   }
 
   return (
-    <div className="home">
-      <img src={mu} alt="character1" />
-      <p>Pokecert.</p>
-      <button onClick={moveToList}>띠부띠부씰 종류 보기</button>
-      <button onClick={moveToCollection}>내가 가진 띠부띠부씰</button>
-      <button onClick={moveToSelection}>보관함</button>
+    <div className="home-wrapper">
+      <div className="home-layout">
+        <img src={mu} alt="character1" />
+        <img src={mu} alt="character1" />
+        <button onClick={moveToList}>띠부띠부씰 종류 보기</button>
+        <button onClick={moveToCollection}>내가 가진 띠부띠부씰</button>
+        <button onClick={moveToSelection}>보관함</button>
+      </div>
     </div>
   )
 }
