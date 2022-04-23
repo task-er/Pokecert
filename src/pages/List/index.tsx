@@ -12,6 +12,7 @@ const List = (): ReactElement => {
   return (
     <div className="list-wrapper">
       <div className="list-layout">
+        <span className="title">띠부띠부씰 종류</span>
         <div className="search">
           <input type="text" />
           <input type="button" value="search" />
