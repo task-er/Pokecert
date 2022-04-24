@@ -1,0 +1,16 @@
+@import "../../assets/styles/responsive.scss";
+
+button.styled-button {
+  height: 50px;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  text-transform: uppercase;
+  border-radius: 30px;
+  color: #464964;
+  font-size: 20px;
+  font-weight: bold;
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}
