@@ -20,14 +20,4 @@ div.home-layout {
   gap: 5px;
   max-width: 500px;
   margin: 0 auto;
-
-  & > button {
-    grid-column: 1 / 3;
-  }
-
-  $responsive-character-gap: calc(100vh - 250px);
-  & > img.main-character {
-    width: 100%;
-    max-width: min(400px, $responsive-character-gap);
-  }
 }

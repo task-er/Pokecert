@@ -1,6 +1,8 @@
 @import "../../assets/styles/responsive.scss";
 
 button.styled-button {
+  display: block;
+  width: 100%;
   height: 50px;
   background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
   text-transform: uppercase;
