@@ -1,0 +1,12 @@
+footer.footer-wrapper {
+  position: absolute;
+  bottom: 50px;
+  color: #eee;
+  width: calc(100vw - 15px);
+  text-align: right;
+
+  & a {
+    color: salmon;
+    text-decoration: none;
+  }
+}
