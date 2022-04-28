@@ -1,7 +1,22 @@
 div.home-button-list-layout {
-  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto;
 
   & > button {
-    margin-top: 5px;
+    grid-column: 1 / 3;
+  }
+
+  & > h1.main-title {
+    grid-column: 1 / 3;
+    color: #eee;
+    font-size: 80px;
+  }
+
+  & > img[alt='character1'] {
+    margin-left: auto;
   }
 }

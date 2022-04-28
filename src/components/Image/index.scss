@@ -1,6 +1,11 @@
-$responsive-character-gap: calc(100vh - 250px);
+$responsive-character-gap: calc(100vh - 350px);
 
 img.main-character {
   width: 100%;
   max-width: min(400px, $responsive-character-gap);
+
+  // height가 너무 작으면 이미지 삭제
+  @media all and (max-height: 500px) {
+    display: none;
+  }
 }
