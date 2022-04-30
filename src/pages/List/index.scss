@@ -1,9 +1,16 @@
+@import '../../assets/styles/responsive.scss';
+
 div.list-wrapper {
   background-color: #333;
   box-sizing: border-box;
   text-align: center;
   height: 100vh;
+  overflow-y: scroll;
   padding: 30px 10%;
+
+  @include tablet-down() {
+    padding: 30px 10px;
+  }
 }
 
 div.list-layout {
@@ -16,13 +23,5 @@ div.list-layout {
   & > div.search {
     height: 38px;
     background-color: #fff;
-  }
-
-  & > div.box {
-    display: inline-block;
-    background-color: #03030315;
-    width: 100px;
-    margin: 10px;
-    height: 100px;
   }
 }

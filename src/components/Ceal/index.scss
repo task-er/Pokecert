@@ -1,0 +1,28 @@
+@import '../../assets/styles/responsive.scss';
+
+div.ceal {
+  display: inline-block;
+  background-color: darkturquoise; //#03030315;
+  color: white;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  overflow-y: hidden;
+
+  & > img {
+    width: inherit;
+    height: inherit;
+    position: relative;
+    top: -32px;
+  }
+  & > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  @include tablet-down() {
+    margin: 3px;
+    width: 80px;
+    height: 80px;
+  }
+}

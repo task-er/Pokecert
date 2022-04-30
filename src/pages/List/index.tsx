@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './index.scss'
+import PokemonList from '@features/PokemonList'
 
 const List = (): ReactElement => {
   const navigate = useNavigate()
@@ -18,25 +19,7 @@ const List = (): ReactElement => {
           <input type="button" value="search" />
         </div>
 
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-        <div className="box">A</div>
-
+        <PokemonList />
         <br />
         <button onClick={goBack}>preview</button>
       </div>
