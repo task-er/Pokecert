@@ -13,11 +13,21 @@ div.ceal {
     width: inherit;
     height: inherit;
     position: relative;
-    top: -32px;
   }
   & > div {
     position: relative;
+    display: none;
     z-index: 1;
+  }
+
+  &:hover {
+    & > img {
+      top: -32px;
+      opacity: 0.3;
+    }
+    & > div {
+      display: block;
+    }
   }
 
   @include tablet-down() {

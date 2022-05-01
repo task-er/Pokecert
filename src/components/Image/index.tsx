@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-// note: useHistory 대신 useNavigate 사용
 import './index.scss'
 
 interface ImageProps {

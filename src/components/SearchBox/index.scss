@@ -1,0 +1,15 @@
+div.search {
+  input {
+    display: inline-block;
+  }
+  input[type="text"] {
+    width: 45vw;
+    height: 100%;
+    font-size: 20px;
+    padding: 0 30px;
+  }
+  
+  input[type="button"] {
+    height: 100%;
+  }
+}
