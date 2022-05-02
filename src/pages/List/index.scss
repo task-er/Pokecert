@@ -11,13 +11,14 @@ div.list-wrapper {
   @include tablet-down() {
     padding: 30px 10px;
   }
-}
 
-div.list-layout {
-  text-align: left;
+  & > div.list-layout {
+    text-align: left;
 
-  & > div.search {
-    height: 38px;
-    background-color: #fff;
-  }
+    & > button {
+      float: left;
+      width: 150px;
+      height: 45px;
+    }
+  }  
 }

@@ -16,10 +16,10 @@ const List = (): ReactElement => {
     <div className="list-wrapper">
       <div className="list-layout">
         <PageTitle title="띠부띠부씰 종류" />
+        <button onClick={goBack}>preview</button>
         <SearchBox />
         <PokemonList />
         <br />
-        <button onClick={goBack}>preview</button>
       </div>
     </div>
   )

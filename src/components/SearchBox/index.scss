@@ -1,15 +1,17 @@
 div.search {
+  text-align: right;
+
   input {
     display: inline-block;
+    height: 38px;
   }
   input[type="text"] {
     width: 45vw;
-    height: 100%;
     font-size: 20px;
     padding: 0 30px;
   }
   
   input[type="button"] {
-    height: 100%;
+    height: 46px;
   }
 }
