@@ -4,12 +4,24 @@ import { pokemons } from '@commons/pokemon.json'
 import Ceal from '@components/Ceal'
 import { PokemonType } from '@commons/types'
 
-const PokemonList = (): ReactElement => (
-  <div className="pokemon-list-layout">
-    {pokemons.map((pokemon: PokemonType, idx: number) => {
-      return <Ceal key={idx} {...pokemon} />
-    })}
-  </div>
-)
+// TODO: redux로 대체 필요.
+// TODO: 각 locationStorage나 redux-persist로 대체 필요
+interface PokemonListProps {
+  keyword: string
+}
+const PokemonList = ({ keyword }: PokemonListProps): ReactElement => {
+  const extracted = pokemons.filter((pokemon: PokemonType) => {
+    const regex = new RegExp(keyword)
+    return regex.test(pokemon.name)
+  })
+
+  return (
+    <div className="pokemon-list-layout">
+      {extracted.map((pokemon: PokemonType, idx: number) => {
+        return <Ceal key={idx} {...pokemon} />
+      })}
+    </div>
+  )
+}
 
 export default PokemonList
