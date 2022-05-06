@@ -4,7 +4,14 @@ import PageTitle from '@components/PageTitle'
 import './index.scss'
 import SearchBox from '@components/SearchBox'
 
-const PokemonList = (): ReactElement => {
+interface PokemonListProps {
+  keyword: string
+  setKeyword: React.Dispatch<React.SetStateAction<string>>
+}
+const PokemonList = ({
+  keyword,
+  setKeyword,
+}: PokemonListProps): ReactElement => {
   const navigate = useNavigate()
 
   const goBack = () => {
@@ -15,7 +22,7 @@ const PokemonList = (): ReactElement => {
     <div className="page-top-layout">
       <PageTitle title="띠부띠부씰 종류" />
       <button onClick={goBack}>◀ 이전</button>
-      <SearchBox />
+      <SearchBox keyword={keyword} setKeyword={setKeyword} />
     </div>
   )
 }

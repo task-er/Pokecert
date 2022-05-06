@@ -4,12 +4,12 @@ import PokemonList from '@features/PokemonList'
 import PageTop from '@features/PageTop'
 
 const List = (): ReactElement => {
-  const [keyword, setKeyword] = useState<string>('아')
+  const [keyword, setKeyword] = useState<string>('')
 
   return (
     <div className="list-wrapper">
       <div className="list-layout">
-        <PageTop />
+        <PageTop keyword={keyword} setKeyword={setKeyword} />
         <PokemonList keyword={keyword} />
       </div>
     </div>
