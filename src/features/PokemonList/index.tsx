@@ -3,13 +3,14 @@ import './index.scss'
 import { pokemons } from '@commons/pokemon.json'
 import Ceal from '@components/Ceal'
 import { PokemonType } from '@commons/types'
+import { useAppSelector } from '../../store/config'
 
 // TODO: redux로 대체 필요.
 // TODO: 각 locationStorage나 redux-persist로 대체 필요
-interface PokemonListProps {
-  keyword: string
-}
-const PokemonList = ({ keyword }: PokemonListProps): ReactElement => {
+
+const PokemonList = (): ReactElement => {
+  const { keyword } = useAppSelector((state) => state.findPokemonSlice)
+
   const extracted = pokemons.filter((pokemon: PokemonType) => {
     const regex = new RegExp(keyword)
     return regex.test(pokemon.name)
