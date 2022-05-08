@@ -1,28 +1,18 @@
+@import '../../assets/styles/responsive.scss';
+
 div.collection-wrapper {
   background-color: #333;
   box-sizing: border-box;
   text-align: center;
   height: 100vh;
+  overflow-y: scroll;
   padding: 30px 10%;
-}
 
-div.collection-layout {
-  text-align: left;
-
-  & > span.title {
-    color: #eee;
+  @include tablet-down() {
+    padding: 30px 10px;
   }
 
-  & > div.search {
-    height: 38px;
-    background-color: #fff;
-  }
-
-  & > div.box {
-    display: inline-block;
-    background-color: #03030315;
-    width: 100px;
-    margin: 10px;
-    height: 100px;
-  }
+  & > div.list-layout {
+    text-align: left;
+  }  
 }

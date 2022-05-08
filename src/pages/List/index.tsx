@@ -7,7 +7,7 @@ const List = (): ReactElement => {
   return (
     <div className="list-wrapper">
       <div className="list-layout">
-        <PageTop />
+        <PageTop title="띠부띠부씰 종류" />
         <PokemonList />
       </div>
     </div>

@@ -7,7 +7,6 @@ const SearchBox = (): ReactElement => {
   const { keyword } = useAppSelector((state) => state.findPokemonSlice)
   const dispatch = useAppDispatch()
 
-  // TODO: throttling 처리로 변경.
   return (
     <div className="search-wrapper">
       <input

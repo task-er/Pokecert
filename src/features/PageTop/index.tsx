@@ -4,7 +4,10 @@ import PageTitle from '@components/PageTitle'
 import './index.scss'
 import SearchBox from '@components/SearchBox'
 
-const PokemonList = (): ReactElement => {
+interface PokemonListProps {
+  title: string
+}
+const PokemonList = ({ title }: PokemonListProps): ReactElement => {
   const navigate = useNavigate()
 
   const goBack = () => {
@@ -13,7 +16,7 @@ const PokemonList = (): ReactElement => {
 
   return (
     <div className="page-top-layout">
-      <PageTitle title="띠부띠부씰 종류" />
+      <PageTitle title={title} />
       <button onClick={goBack}>◀ 이전</button>
       <SearchBox />
     </div>
