@@ -12,9 +12,8 @@ const HomeButtonList = (): ReactElement => {
       <Image src={mewtwo} alt="character1" />
       <Image src={mew} alt="character2" />
 
-      <Button page="/list" value="띠부띠부씰 종류 보기" />
-      <Button page="/Collection" value="내가 가진 띠부띠부씰" />
-      <Button page="/Selection" value="보관함" />
+      <Button page="/list" value="띠부띠부씰 선택" />
+      <Button page="/Collection" value="보관함" />
     </div>
   )
 }

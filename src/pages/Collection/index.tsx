@@ -7,7 +7,7 @@ const Collection = (): ReactElement => {
   return (
     <div className="collection-wrapper">
       <div className="collection-layout">
-        <PageTop title="내가 모은 띠부띠부씰" />
+        <PageTop title="보관함" />
         <PokemonList />
       </div>
     </div>

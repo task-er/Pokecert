@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 import Home from '@pages/Home'
 import List from '@pages/List'
 import Collection from '@pages/Collection'
-import Selection from '@pages/Selection'
 
 // note: Switch 대신 Routes를 사용하고 Route의 Component 대신 element를 사용해야 한다.
 // note: exact 키워드 대신 *을 사용하여 특정한다.
@@ -13,7 +12,6 @@ const App = (): ReactElement => (
     <Route path="/" element={<Home />} />
     <Route path="/List" element={<List />} />
     <Route path="/Collection" element={<Collection />} />
-    <Route path="/Selection" element={<Selection />} />
     <Route path="/*" element={<>Not Found.</>} />
   </Routes>
 )
