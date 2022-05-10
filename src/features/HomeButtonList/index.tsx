@@ -13,7 +13,7 @@ const HomeButtonList = (): ReactElement => {
       <Image src={mew} alt="character2" />
 
       <Button page="/list" value="띠부띠부씰 선택" />
-      <Button page="/Collection" value="보관함" />
+      <Button page="/collection" value="보관함" />
     </div>
   )
 }

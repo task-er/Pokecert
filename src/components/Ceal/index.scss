@@ -2,13 +2,15 @@
 
 div.ceal {
   display: inline-block;
-  background-color: darkturquoise; //#03030315;
+  background-color: #03030315;
   color: white;
   margin: 10px;
   width: 100px;
   height: 100px;
   overflow-y: hidden;
+  opacity: 0.3;
 
+  // 블록이 선택 안 된 경우
   & > img {
     width: inherit;
     height: inherit;
@@ -20,10 +22,12 @@ div.ceal {
     z-index: 1;
   }
 
-  &:hover {
+  // 블록이 선택되거나 마우스 hover시
+  &:hover,
+  &.selected {
+    opacity: 1;
     & > img {
       top: -32px;
-      opacity: 0.3;
     }
     & > div {
       display: block;

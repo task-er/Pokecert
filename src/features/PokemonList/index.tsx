@@ -19,7 +19,7 @@ const PokemonList = (): ReactElement => {
   return (
     <div className="pokemon-list-layout">
       {extracted.map((pokemon: PokemonType, idx: number) => {
-        return <Ceal key={idx} {...pokemon} />
+        return <Ceal key={idx} {...pokemon} selected />
       })}
     </div>
   )
