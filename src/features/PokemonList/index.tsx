@@ -10,6 +10,7 @@ import { useAppSelector } from '../../store/config'
 
 const PokemonList = (): ReactElement => {
   const { keyword } = useAppSelector((state) => state.findPokemonSlice)
+  const { selected } = useAppSelector((state) => state.selectPokemonSlice)
 
   const extracted = pokemons.filter((pokemon: PokemonType) => {
     const regex = new RegExp(keyword)
@@ -18,8 +19,14 @@ const PokemonList = (): ReactElement => {
 
   return (
     <div className="pokemon-list-layout">
-      {extracted.map((pokemon: PokemonType, idx: number) => {
-        return <Ceal key={idx} {...pokemon} selected />
+      {extracted.map((pokemon: PokemonType) => {
+        return (
+          <Ceal
+            key={pokemon.id + pokemon.name}
+            selected={selected.includes(pokemon.id)}
+            {...pokemon}
+          />
+        )
       })}
     </div>
   )
