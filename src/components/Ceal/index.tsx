@@ -1,17 +1,16 @@
 import React, { ReactElement } from 'react'
 import './index.scss'
-import Image from '@components/Image'
 import { useAppDispatch, useAppSelector } from '../../store/config'
 import { selectPokemon } from '../../store/selectPokemonSlice'
+import POKEMON_SPRITES from '@assets/images/pokemon-sprites.png'
 
 interface CealProps {
   id: number
   no: number
   name: string
-  image: string
   selected: boolean
 }
-const Ceal = ({ id, no, name, image, selected }: CealProps): ReactElement => {
+const Ceal = ({ id, no, name, selected }: CealProps): ReactElement => {
   const dispatch = useAppDispatch()
   const { selected: selectedPokemon } = useAppSelector(
     (state) => state.selectPokemonSlice,
@@ -37,13 +36,17 @@ const Ceal = ({ id, no, name, image, selected }: CealProps): ReactElement => {
 
   return (
     <div
-      className={`ceal ${selected ? 'selected' : ''}`}
+      className={`ceal ${selected ? 'selected ' : ''}pokemon-sprite-${no}`}
       onClick={openPokemonSelectionModal(id)}
+      style={{
+        backgroundImage: `url(${POKEMON_SPRITES})`,
+        backgroundColor: '#03030330',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       <div>
         no. {no} <br /> {name}
       </div>
-      <Image src={image}></Image>
     </div>
   )
 }

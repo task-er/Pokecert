@@ -2,7 +2,8 @@ export interface PokemonType {
   id: number
   no: number
   name: string
-  image: string
+  x: number
+  y: number
 }
 
 export interface PokemonsType {
