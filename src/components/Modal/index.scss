@@ -1,0 +1,34 @@
+div.modal-inner-box {
+  display: grid;
+  background-color: #eee;
+  margin: 0 auto;
+  border-radius: 1rem;
+  padding: 2em;
+  animation-name: show-modal-animation;
+  animation-duration: 0.3s;
+  text-align: left;
+  grid-template-rows: 3;
+  grid-gap: 2em;
+
+  & > h1 {
+    font-size: 150%;
+  }
+  & > div.modal-content {
+    font-size: 100%;
+  }
+
+  & > div.modal-button-list {
+    margin: 0 auto;
+    
+    &> input[type="button"] {
+      width: 100px;
+      height: 30px;
+      margin: 0 10px;
+    }
+  }
+}
+
+@keyframes show-modal-animation {
+  from {opacity: 0; }
+  to { opacity: 1; }
+}

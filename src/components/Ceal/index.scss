@@ -8,7 +8,9 @@ div.ceal {
   height: 100px;
   overflow-y: hidden;
   opacity: 0.3;
+  background-image: url('../../assets/images/pokemon-sprites.png');
   background-size: 1312.5px 1211.25px;
+  background-color: #03030315;
 
   & > div {
     display: none;
@@ -44,7 +46,7 @@ div.ceal {
     @for $column_idx from 1 through length($column) {
       $cell: nth($column, $column_idx);
       &.pokemon-sprite-#{$cell} {
-        background-position: calc(-100.93px * ($column_idx - 1)) calc(-100.93px * calc($row_idx - 1))
+        background-position: calc(-100.93px * ($column_idx - 1)) calc(-100.93px * calc($row_idx - 1));
       }
     }
   }
@@ -60,7 +62,7 @@ div.ceal {
       @for $column_idx from 1 through length($column) {
         $cell: nth($column, $column_idx);
         &.pokemon-sprite-#{$cell} {
-          background-position: calc(-80.77px * ($column_idx - 1)) calc(-80.75px * calc($row_idx - 1))
+          background-position: calc(-80.77px * ($column_idx - 1)) calc(-80.75px * calc($row_idx - 1));
         }
       }
     }
