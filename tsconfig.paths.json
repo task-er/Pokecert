@@ -6,7 +6,8 @@
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@features/*": ["src/features/*"],
-      "@commons/*": ["src/commons/*"]
+      "@commons/*": ["src/commons/*"],
+      "@redux/*": ["src/redux/*"]
     }
   }
 }

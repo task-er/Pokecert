@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
-import { useAppDispatch, useAppSelector } from '../../store/config'
-import { findPokemon } from '../../store/findPokemonSlice'
+import { useAppDispatch, useAppSelector } from '@redux/config'
+import { findPokemon } from '@redux/findPokemonSlice'
 import './index.scss'
 
 const SearchBox = (): ReactElement => {

@@ -1,15 +1,14 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import './index.scss'
 import { pokemons } from '@commons/pokemon.json'
 import Ceal from '@components/Ceal'
 import { PokemonType, DEFAULT_POKEMON } from '@commons/types'
-import { useAppDispatch, useAppSelector } from '../../store/config'
-import { selectPokemon } from '../../store/selectPokemonSlice'
+import { useAppDispatch, useAppSelector } from '@redux/config'
+import { selectPokemon } from '@redux/selectPokemonSlice'
 import Modal from '@components/Modal'
+import { findPokemon } from '@redux/findPokemonSlice'
 
-// TODO: redux로 대체 필요.
 // TODO: 각 locationStorage나 redux-persist로 대체 필요
-
 const PokemonList = (): ReactElement => {
   const dispatch = useAppDispatch()
   const { keyword } = useAppSelector((state) => state.findPokemonSlice)
@@ -17,6 +16,7 @@ const PokemonList = (): ReactElement => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
   const [currentPokemon, setCurrentPokemon] =
     useState<PokemonType>(DEFAULT_POKEMON)
+  const [isSelected, setIsSelected] = useState<boolean>(false)
   const { selected: selectedPokemon } = useAppSelector(
     (state) => state.selectPokemonSlice,
   )
@@ -27,11 +27,17 @@ const PokemonList = (): ReactElement => {
   })
 
   const createModalContent = () => {
-    const isSelected = selected.includes(currentPokemon.id)
     if (isSelected) {
       return `내 보괌함에서 no.${currentPokemon.no} ${currentPokemon.name} 을(를) 삭제하시겠습니까?`
     }
     return `내 보관함에 no.${currentPokemon.no} ${currentPokemon.name} 을(를) 추가하시겠습니까?`
+  }
+
+  const createModalOkText = () => {
+    if (isSelected) {
+      return '삭제'
+    }
+    return '보관'
   }
 
   const openPokemonSelectionModal = (pokemon: PokemonType) => {
@@ -43,8 +49,6 @@ const PokemonList = (): ReactElement => {
 
   const okHandler = () => {
     setIsOpenModal(false)
-    const isSelected = selected.includes(currentPokemon.id)
-
     if (isSelected) {
       const current = selectedPokemon.indexOf(currentPokemon.id)
       dispatch(
@@ -62,6 +66,13 @@ const PokemonList = (): ReactElement => {
     setIsOpenModal(false)
   }
 
+  useEffect(() => {
+    dispatch(findPokemon(''))
+  }, [])
+  useEffect(() => {
+    setIsSelected(selected.includes(currentPokemon.id))
+  }, [currentPokemon])
+
   return (
     <div className="pokemon-list-layout">
       {extracted.map(({ id, ...pokemon }: PokemonType) => {
@@ -77,7 +88,7 @@ const PokemonList = (): ReactElement => {
       {isOpenModal && (
         <Modal
           content={createModalContent()}
-          onOkText="보관"
+          onOkText={createModalOkText()}
           onOkEvent={okHandler}
           onCancelEvent={cancelHandler}
           onClickOutsideEvent={cancelHandler}
