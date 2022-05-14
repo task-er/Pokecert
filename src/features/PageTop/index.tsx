@@ -4,10 +4,10 @@ import PageTitle from '@components/PageTitle'
 import './index.scss'
 import SearchBox from '@components/SearchBox'
 
-interface PokemonListProps {
+interface PageTopProps {
   title: string
 }
-const PokemonList = ({ title }: PokemonListProps): ReactElement => {
+const PageTop = ({ title }: PageTopProps): ReactElement => {
   const navigate = useNavigate()
 
   const goBack = () => {
@@ -23,4 +23,4 @@ const PokemonList = ({ title }: PokemonListProps): ReactElement => {
   )
 }
 
-export default PokemonList
+export default PageTop

@@ -9,10 +9,10 @@ import Modal from '@components/Modal'
 import { findPokemon } from '@redux/findPokemonSlice'
 
 // TODO: 각 locationStorage나 redux-persist로 대체 필요
-interface PokemonListProps {
+interface DecorationListProps {
   isLock?: boolean
 }
-const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
+const DecorationList = ({ isLock }: DecorationListProps): ReactElement => {
   const dispatch = useAppDispatch()
   const { keyword } = useAppSelector((state) => state.findPokemonSlice)
   const { selected } = useAppSelector((state) => state.selectPokemonSlice)
@@ -115,4 +115,4 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   )
 }
 
-export default PokemonList
+export default DecorationList

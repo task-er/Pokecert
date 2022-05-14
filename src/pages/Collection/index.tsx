@@ -8,7 +8,7 @@ const Collection = (): ReactElement => {
     <div className="collection-wrapper">
       <div className="collection-layout">
         <PageTop title="보관함" />
-        <PokemonList />
+        <PokemonList isLock />
       </div>
     </div>
   )
