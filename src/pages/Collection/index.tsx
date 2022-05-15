@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import './index.scss'
 import PokemonList from '@features/PokemonList'
+import MedalList from '@features/MedalList'
 import PageTop from '@features/PageTop'
 
 const Collection = (): ReactElement => {
@@ -9,6 +10,7 @@ const Collection = (): ReactElement => {
       <div className="collection-layout">
         <PageTop title="보관함" />
         <PokemonList isLock />
+        <MedalList />
       </div>
     </div>
   )

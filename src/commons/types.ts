@@ -1,3 +1,4 @@
+/* pokemon */
 export const DEFAULT_POKEMON = {
   id: 0,
   no: 0,
@@ -15,4 +16,16 @@ export interface PokemonType {
 
 export interface PokemonsType {
   pokemons: PokemonType
+}
+
+/* Medal */
+export const DEFAULT_MEDAL = {
+  id: 0,
+  name: '',
+  content: '',
+}
+export interface MedalType {
+  id: number
+  name: string
+  content: string
 }

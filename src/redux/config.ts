@@ -1,10 +1,12 @@
 import { combineReducers, configureStore, Dispatch } from '@reduxjs/toolkit'
 import { selectPokemonSlice } from './selectPokemonSlice'
 import { findPokemonSlice } from './findPokemonSlice'
+import { hasPokemonSlice } from './hasPokemonSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 const rootReducer = combineReducers({
   selectPokemonSlice: selectPokemonSlice.reducer,
+  hasPokemonSlice: hasPokemonSlice.reducer,
   findPokemonSlice: findPokemonSlice.reducer,
 })
 

@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@redux/config'
 import { selectPokemon } from '@redux/selectPokemonSlice'
 import Modal from '@components/Modal'
 import { findPokemon } from '@redux/findPokemonSlice'
+import { insertMedals } from '@redux/hasPokemonSlice'
 
 // TODO: 각 locationStorage나 redux-persist로 대체 필요
 interface PokemonListProps {
@@ -20,9 +21,11 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   const [currentPokemon, setCurrentPokemon] =
     useState<PokemonType>(DEFAULT_POKEMON)
   const [isSelected, setIsSelected] = useState<boolean>(false)
+  // TODO: 두번 호출하는 것 삭제
   const { selected: selectedPokemon } = useAppSelector(
     (state) => state.selectPokemonSlice,
   )
+
   const extracted = isLock
     ? pokemons.filter(({ id }: PokemonType) => {
         return selected.includes(id)
@@ -62,6 +65,74 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     }
   }
 
+  // TODO: useEffect로 분리 및 보관함에서도 변동하도록 수정
+  const correctOwnMedals = () => {
+    const myMedals = new Array<number>()
+    const legendPokemons = [150, 151, 152, 153, 154, 155, 156, 157, 158, 159]
+    const ancientPokemons = [143, 144, 145, 146, 147]
+    const strangePokemons = [1, 2, 3, 4]
+    const numberOfPokemons = selectedPokemon.length
+
+    const hasPokemons = (pokemons: Array<number>) => {
+      const ownPokemonList = pokemons.filter((pokemon) => {
+        return selected.includes(pokemon)
+      })
+      console.log(ownPokemonList)
+      return JSON.stringify(ownPokemonList) === JSON.stringify(pokemons)
+    }
+    // 다 모은 경우
+    if (numberOfPokemons >= 159) {
+      myMedals.push(10)
+    }
+
+    // 전설의 포켓몬을 모은 경우
+    if (hasPokemons(legendPokemons)) {
+      myMedals.push(9)
+    }
+
+    // 고대 포켓몬을 모은 경우
+    if (hasPokemons(ancientPokemons)) {
+      myMedals.push(8)
+    }
+
+    // 이상해씨 진화 포켓몬을 모은 경우
+    if (hasPokemons(strangePokemons)) {
+      myMedals.push(7)
+    }
+
+    // 120개 이상 모은 경우
+    if (numberOfPokemons >= 120) {
+      myMedals.push(6)
+    }
+
+    // 90개 이상 모은 경우
+    if (numberOfPokemons >= 90) {
+      myMedals.push(5)
+    }
+
+    // 60개 이상 모은 경우
+    if (numberOfPokemons >= 60) {
+      myMedals.push(4)
+    }
+
+    // 30개 이상 모은 경우
+    if (numberOfPokemons >= 30) {
+      myMedals.push(3)
+    }
+
+    // // 10개 이상 모은 경우
+    if (numberOfPokemons >= 10) {
+      myMedals.push(2)
+    }
+
+    // 1개 이상 모은 경우
+    if (numberOfPokemons >= 1) {
+      myMedals.push(1)
+    }
+
+    dispatch(insertMedals(myMedals))
+  }
+
   const okHandler = () => {
     setIsOpenModal(false)
     if (isSelected) {
@@ -89,6 +160,9 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     setIsSelected(selected.includes(currentPokemon.id))
   }, [currentPokemon])
 
+  useEffect(() => {
+    correctOwnMedals()
+  }, [selected])
   return (
     <div className="pokemon-list-layout">
       {createDefaultMessage()}
