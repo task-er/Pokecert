@@ -77,7 +77,6 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
       const ownPokemonList = pokemons.filter((pokemon) => {
         return selected.includes(pokemon)
       })
-      console.log(ownPokemonList)
       return JSON.stringify(ownPokemonList) === JSON.stringify(pokemons)
     }
     // 다 모은 경우
@@ -97,32 +96,32 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
 
     // 이상해씨 진화 포켓몬을 모은 경우
     if (hasPokemons(strangePokemons)) {
-      myMedals.push(7)
+      myMedals.push(2)
     }
 
     // 120개 이상 모은 경우
     if (numberOfPokemons >= 120) {
-      myMedals.push(6)
+      myMedals.push(7)
     }
 
     // 90개 이상 모은 경우
     if (numberOfPokemons >= 90) {
-      myMedals.push(5)
+      myMedals.push(6)
     }
 
     // 60개 이상 모은 경우
     if (numberOfPokemons >= 60) {
-      myMedals.push(4)
+      myMedals.push(5)
     }
 
     // 30개 이상 모은 경우
     if (numberOfPokemons >= 30) {
-      myMedals.push(3)
+      myMedals.push(4)
     }
 
     // // 10개 이상 모은 경우
     if (numberOfPokemons >= 10) {
-      myMedals.push(2)
+      myMedals.push(3)
     }
 
     // 1개 이상 모은 경우

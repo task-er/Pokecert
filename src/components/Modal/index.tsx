@@ -3,6 +3,7 @@ import ModalTemplate from '../../templates/ModalTemplate'
 import './index.scss'
 
 interface ModalProps {
+  title?: string
   content: string
   onOkText?: string
   onOkEvent?: React.MouseEventHandler<HTMLDivElement>
@@ -11,8 +12,9 @@ interface ModalProps {
   onClickOutsideEvent?: React.MouseEventHandler<HTMLDivElement>
 }
 const Modal = ({
+  title = '알림',
   content,
-  onOkText = '수락',
+  onOkText = '확인',
   onOkEvent,
   onCancelText = '취소',
   onCancelEvent,
@@ -21,7 +23,7 @@ const Modal = ({
   return (
     <ModalTemplate handleClickOutside={onClickOutsideEvent}>
       <div className="modal-inner-box">
-        <h1>알림</h1>
+        <h1>{title}</h1>
         <div className="modal-content">{content}</div>
         <div className="modal-button-list">
           {onOkEvent && (

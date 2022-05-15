@@ -1,15 +1,13 @@
 @import '../../assets/styles/responsive.scss';
 
-div.ceal {
+div.medal {
   display: inline-block;
   color: white;
   margin: 10px;
   width: 100px;
   height: 100px;
   overflow-y: hidden;
-  opacity: 0.3;
-  background-image: url('../../assets/images/pokemon-sprites.png');
-  background-size: 1312.5px 1211.25px;
+  background-image: url('../../assets/images/medal.png');
   background-color: #03030315;
   cursor: pointer;
 
@@ -25,46 +23,10 @@ div.ceal {
     }
   }
 
-  // css sprite 가 binary 형태로 되어 있어서 재조정
-  $row-1: 4, 5, 8, 10, 17, 20, 38, 44, 84, 83, 104, 125, 148;
-  $row-2: 6, 7, 11, 9, 18, 55, 62, 48, 60, 85, 105, 126, 149;
-  $row-3: 14, 13, 19, 12, 42, 23, 70, 51, 28, 86, 106, 127, 150;
-  $row-4: 25, 26, 15, 16, 41, 22, 39, 47, 61, 90, 107, 128, 151;
-  $row-5: 21, 52, 54, 53, 49, 56, 69, 50, 89, 88, 108, 129, 1;
-  $row-6: 30, 33, 63, 34, 37, 32, 36, 58, 66, 59, 109, 130, 2;
-  $row-7: 40, 35, 74, 43, 45, 46, 72, 57, 68, 91, 110, 131, 3;
-  $row-8: 31, 24, 27, 29, 75, 77, 79, 81, 64, 92, 111, 132;
-  $row-9: 67, 65, 73, 80, 82, 93, 76, 78, 71, 94, 112, 133;
-  $row-10: 95, 87, 96, 97, 98, 99, 100, 101, 102, 103, 113, 134;
-  $row-11: 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 135;
-  $row-12: 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147;
-
-  $rows: $row-1, $row-2, $row-3, $row-4, $row-5, $row-6, $row-7, $row-8, $row-9, $row-10, $row-11, $row-12;
-  
-  @for $row_idx from 1 through length($rows) {
-    $column: nth($rows, $row_idx);
-    @for $column_idx from 1 through length($column) {
-      $cell: nth($column, $column_idx);
-      &.pokemon-sprite-#{$cell} {
-        background-position: calc(-100.93px * ($column_idx - 1)) calc(-100.93px * calc($row_idx - 1));
-      }
-    }
-  }
 
   @include tablet-down() {
     margin: 3px;
     width: 80px;
     height: 80px;
-    background-size: 1050px 969px;
-
-    @for $row_idx from 1 through length($rows) {
-      $column: nth($rows, $row_idx);
-      @for $column_idx from 1 through length($column) {
-        $cell: nth($column, $column_idx);
-        &.pokemon-sprite-#{$cell} {
-          background-position: calc(-80.77px * ($column_idx - 1)) calc(-80.75px * calc($row_idx - 1));
-        }
-      }
-    }
   }
 }

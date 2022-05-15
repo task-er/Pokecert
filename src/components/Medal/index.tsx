@@ -7,7 +7,7 @@ interface MedalProps {
 }
 const Medal = ({ id, onClickEvent }: MedalProps): ReactElement => {
   return (
-    <div className="Medal" onClick={onClickEvent}>
+    <div className="medal" onClick={onClickEvent}>
       <div>{id}</div>
     </div>
   )
