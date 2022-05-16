@@ -3,10 +3,12 @@ import ITemplates from '../Itemplates'
 import './index.scss'
 
 interface ModalTypes extends ITemplates {
+  isOpen: boolean
   handleClickOutside?: React.MouseEventHandler<HTMLDivElement>
 }
 const ModalTemplate = ({
   children,
+  isOpen,
   handleClickOutside,
 }: ModalTypes): ReactElement => {
   const outsideRef = useRef(null)
@@ -20,7 +22,7 @@ const ModalTemplate = ({
 
   return (
     <div
-      className="modal-template-wrapper"
+      className={`modal-template-wrapper ${isOpen ? 'show' : ''}`}
       ref={outsideRef}
       onClick={onClickOutside}
     >

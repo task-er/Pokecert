@@ -175,15 +175,14 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
           />
         )
       })}
-      {isOpenModal && (
-        <Modal
-          content={createModalContent()}
-          onOkText={createModalOkText()}
-          onOkEvent={okHandler}
-          onCancelEvent={cancelHandler}
-          onClickOutsideEvent={cancelHandler}
-        />
-      )}
+      <Modal
+        isOpen={isOpenModal}
+        content={createModalContent()}
+        onOkText={createModalOkText()}
+        onOkEvent={okHandler}
+        onCancelEvent={cancelHandler}
+        onClickOutsideEvent={cancelHandler}
+      />
     </div>
   )
 }

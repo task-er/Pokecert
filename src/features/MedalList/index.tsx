@@ -9,7 +9,7 @@ import Modal from '@components/Modal'
 const MedalList = (): ReactElement => {
   const { myMedals } = useAppSelector((state) => state.hasPokemonSlice)
   const [currentMedal, setCurrentMedal] = useState<MedalType>(DEFAULT_MEDAL)
-  const [isOpenModal, setIsOpenModal] = useState<boolean>()
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
 
   const extracted = medals.filter((medal: MedalType) => {
     return myMedals.includes(medal.id)
@@ -39,14 +39,13 @@ const MedalList = (): ReactElement => {
           />
         )
       })}
-      {isOpenModal && (
-        <Modal
-          title={currentMedal.name}
-          content={currentMedal.content}
-          onOkEvent={cancelHandler}
-          onClickOutsideEvent={cancelHandler}
-        />
-      )}
+      <Modal
+        isOpen={isOpenModal}
+        title={currentMedal.name}
+        content={currentMedal.content}
+        onOkEvent={cancelHandler}
+        onClickOutsideEvent={cancelHandler}
+      />
     </div>
   )
 }
