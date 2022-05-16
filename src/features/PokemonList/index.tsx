@@ -27,9 +27,15 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   )
 
   const extracted = isLock
-    ? pokemons.filter(({ id }: PokemonType) => {
-        return selected.includes(id)
-      })
+    ? pokemons
+        .filter((pokemon: PokemonType) => {
+          const regex = new RegExp(keyword)
+          return selected.includes(pokemon.id) && regex.test(pokemon.name)
+        })
+        .filter((pokemon: PokemonType) => {
+          const regex = new RegExp(keyword)
+          return regex.test(pokemon.name)
+        })
     : pokemons.filter((pokemon: PokemonType) => {
         const regex = new RegExp(keyword)
         return regex.test(pokemon.name)
@@ -119,7 +125,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
       myMedals.push(4)
     }
 
-    // // 10개 이상 모은 경우
+    // 10개 이상 모은 경우
     if (numberOfPokemons >= 10) {
       myMedals.push(3)
     }
@@ -132,6 +138,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     dispatch(insertMedals(myMedals))
   }
 
+  // TODO: Array를 Set으로 변경
   const okHandler = () => {
     setIsOpenModal(false)
     if (isSelected) {
