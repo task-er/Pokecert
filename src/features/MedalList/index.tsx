@@ -12,7 +12,7 @@ const MedalList = (): ReactElement => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
 
   const extracted = medals.filter((medal: MedalType) => {
-    return myMedals.includes(medal.id)
+    return myMedals.has(medal.id)
   })
 
   const openMedalModal = (medal: MedalType) => {

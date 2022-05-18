@@ -16,21 +16,19 @@ interface PokemonListProps {
 const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   const dispatch = useAppDispatch()
   const { keyword } = useAppSelector((state) => state.findPokemonSlice)
-  const { selected } = useAppSelector((state) => state.selectPokemonSlice)
+  const { selectedPokemons } = useAppSelector(
+    (state) => state.selectPokemonSlice,
+  )
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
   const [currentPokemon, setCurrentPokemon] =
     useState<PokemonType>(DEFAULT_POKEMON)
   const [isSelected, setIsSelected] = useState<boolean>(false)
-  // TODO: 두번 호출하는 것 삭제
-  const { selected: selectedPokemon } = useAppSelector(
-    (state) => state.selectPokemonSlice,
-  )
 
   const extracted = isLock
     ? pokemons
         .filter((pokemon: PokemonType) => {
           const regex = new RegExp(keyword)
-          return selected.includes(pokemon.id) && regex.test(pokemon.name)
+          return selectedPokemons.has(pokemon.id) && regex.test(pokemon.name)
         })
         .filter((pokemon: PokemonType) => {
           const regex = new RegExp(keyword)
@@ -73,66 +71,66 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
 
   // TODO: useEffect로 분리 및 보관함에서도 변동하도록 수정
   const correctOwnMedals = () => {
-    const myMedals = new Array<number>()
+    const myMedals = new Set<number>()
     const legendPokemons = [150, 151, 152, 153, 154, 155, 156, 157, 158, 159]
     const ancientPokemons = [143, 144, 145, 146, 147]
     const strangePokemons = [1, 2, 3, 4]
-    const numberOfPokemons = selectedPokemon.length
+    const numberOfPokemons = selectedPokemons.size
 
     const hasPokemons = (pokemons: Array<number>) => {
       const ownPokemonList = pokemons.filter((pokemon) => {
-        return selected.includes(pokemon)
+        return selectedPokemons.has(pokemon)
       })
       return JSON.stringify(ownPokemonList) === JSON.stringify(pokemons)
     }
     // 다 모은 경우
     if (numberOfPokemons >= 159) {
-      myMedals.push(10)
+      myMedals.add(10)
     }
 
     // 전설의 포켓몬을 모은 경우
     if (hasPokemons(legendPokemons)) {
-      myMedals.push(9)
+      myMedals.add(9)
     }
 
     // 고대 포켓몬을 모은 경우
     if (hasPokemons(ancientPokemons)) {
-      myMedals.push(8)
+      myMedals.add(8)
     }
 
     // 이상해씨 진화 포켓몬을 모은 경우
     if (hasPokemons(strangePokemons)) {
-      myMedals.push(2)
+      myMedals.add(2)
     }
 
     // 120개 이상 모은 경우
     if (numberOfPokemons >= 120) {
-      myMedals.push(7)
+      myMedals.add(7)
     }
 
     // 90개 이상 모은 경우
     if (numberOfPokemons >= 90) {
-      myMedals.push(6)
+      myMedals.add(6)
     }
 
     // 60개 이상 모은 경우
     if (numberOfPokemons >= 60) {
-      myMedals.push(5)
+      myMedals.add(5)
     }
 
     // 30개 이상 모은 경우
     if (numberOfPokemons >= 30) {
-      myMedals.push(4)
+      myMedals.add(4)
     }
 
     // 10개 이상 모은 경우
     if (numberOfPokemons >= 10) {
-      myMedals.push(3)
+      myMedals.add(3)
     }
 
     // 1개 이상 모은 경우
     if (numberOfPokemons >= 1) {
-      myMedals.push(1)
+      myMedals.add(1)
     }
 
     dispatch(insertMedals(myMedals))
@@ -141,16 +139,14 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   // TODO: Array를 Set으로 변경
   const okHandler = () => {
     setIsOpenModal(false)
+    const newSet = new Set(selectedPokemons)
+
     if (isSelected) {
-      const current = selectedPokemon.indexOf(currentPokemon.id)
-      dispatch(
-        selectPokemon([
-          ...selectedPokemon.slice(0, current),
-          ...selectedPokemon.slice(current + 1, selectedPokemon.length),
-        ]),
-      )
+      newSet.delete(currentPokemon.id)
+      dispatch(selectPokemon(newSet))
     } else {
-      dispatch(selectPokemon([...selectedPokemon, currentPokemon.id]))
+      newSet.add(currentPokemon.id)
+      dispatch(selectPokemon(newSet))
     }
   }
 
@@ -163,12 +159,12 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   }, [])
 
   useEffect(() => {
-    setIsSelected(selected.includes(currentPokemon.id))
+    setIsSelected(selectedPokemons.has(currentPokemon.id))
   }, [currentPokemon])
 
   useEffect(() => {
     correctOwnMedals()
-  }, [selected])
+  }, [selectedPokemons])
   return (
     <div className="pokemon-list-layout">
       {createDefaultMessage()}
@@ -176,7 +172,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
         return (
           <Ceal
             key={`${id}${pokemon.name}`}
-            isSelected={selected.includes(id)}
+            isSelected={selectedPokemons.has(id)}
             onClickEvent={openPokemonSelectionModal({ id, ...pokemon })}
             {...pokemon}
           />
