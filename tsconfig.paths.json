@@ -7,7 +7,8 @@
       "@components/*": ["src/components/*"],
       "@features/*": ["src/features/*"],
       "@commons/*": ["src/commons/*"],
-      "@redux/*": ["src/redux/*"]
+      "@redux/*": ["src/redux/*"],
+      "@templates/*": ["src/templates/*"]
     }
   }
 }

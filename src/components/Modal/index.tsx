@@ -22,30 +22,40 @@ const Modal = ({
   onCancelEvent,
   onClickOutsideEvent,
 }: ModalProps): ReactElement => {
-  const handleKeyPressEsc = (event: { key: string }) => {
-    if (event.key === 'Escape') {
-      if (onCancelEvent) {
-        onCancelEvent()
-      } else if (onOkEvent) {
-        onOkEvent()
-      }
-    }
-
-    if (event.key === 'Enter') {
-      if (onOkEvent) {
-        onOkEvent()
-      }
+  const handleKeyPressEsc = () => {
+    if (onCancelEvent) {
+      onCancelEvent()
+    } else if (onOkEvent) {
+      onOkEvent()
     }
   }
+
+  const handleKeyPressEnter = () => {
+    if (onOkEvent) {
+      onOkEvent()
+    }
+  }
+
+  const handleKeyPressEvent = (event: { key: string }) => {
+    switch (event.key) {
+      case 'Escape':
+        handleKeyPressEsc()
+        break
+      case 'Enter':
+        handleKeyPressEnter()
+        break
+    }
+  }
+
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('keydown', handleKeyPressEsc, false)
+      document.addEventListener('keydown', handleKeyPressEvent, false)
     } else {
-      document.removeEventListener('keydown', handleKeyPressEsc, false)
+      document.removeEventListener('keydown', handleKeyPressEvent, false)
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyPressEsc, false)
+      document.removeEventListener('keydown', handleKeyPressEvent, false)
     }
   }, [isOpen])
 

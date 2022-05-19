@@ -7,7 +7,7 @@ import { useAppSelector } from '@redux/config'
 import Modal from '@components/Modal'
 
 const MedalList = (): ReactElement => {
-  const { myMedals } = useAppSelector((state) => state.hasPokemonSlice)
+  const { myMedals } = useAppSelector((state) => state.hasMedalSlice)
   const [currentMedal, setCurrentMedal] = useState<MedalType>(DEFAULT_MEDAL)
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
 

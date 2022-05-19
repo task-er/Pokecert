@@ -1,17 +1,25 @@
 import { combineReducers, configureStore, Dispatch } from '@reduxjs/toolkit'
+import { createLogger } from 'redux-logger'
 import { selectPokemonSlice } from './selectPokemonSlice'
 import { findPokemonSlice } from './findPokemonSlice'
-import { hasPokemonSlice } from './hasPokemonSlice'
+import { hasMedalSlice } from './hasMedalSlice'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+
+const logger = createLogger()
 
 const rootReducer = combineReducers({
   selectPokemonSlice: selectPokemonSlice.reducer,
-  hasPokemonSlice: hasPokemonSlice.reducer,
+  hasMedalSlice: hasMedalSlice.reducer,
   findPokemonSlice: findPokemonSlice.reducer,
 })
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(logger),
+  devTools: process.env.NODE_ENV !== 'production',
 })
 
 export type RootState = ReturnType<typeof store.getState>

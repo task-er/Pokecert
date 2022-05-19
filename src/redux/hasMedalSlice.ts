@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 //
-export const hasPokemonSlice = createSlice({
-  name: 'selectedPokemon',
+export const hasMedalSlice = createSlice({
+  name: 'hasMedal',
   initialState: {
     myMedals: new Set<number>(),
   },
@@ -13,4 +13,4 @@ export const hasPokemonSlice = createSlice({
   },
 })
 
-export const { insertMedals } = hasPokemonSlice.actions
+export const { insertMedals } = hasMedalSlice.actions

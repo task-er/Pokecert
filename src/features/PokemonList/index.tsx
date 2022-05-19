@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useMemo, useState } from 'react'
 import './index.scss'
 import { pokemons } from '@commons/pokemon.json'
 import Ceal from '@components/Ceal'
@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '@redux/config'
 import { selectPokemon } from '@redux/selectPokemonSlice'
 import Modal from '@components/Modal'
 import { findPokemon } from '@redux/findPokemonSlice'
-import { insertMedals } from '@redux/hasPokemonSlice'
+import { insertMedals } from '@redux/hasMedalSlice'
 
 // TODO: 각 locationStorage나 redux-persist로 대체 필요
 interface PokemonListProps {
@@ -22,7 +22,6 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
   const [currentPokemon, setCurrentPokemon] =
     useState<PokemonType>(DEFAULT_POKEMON)
-  const [isSelected, setIsSelected] = useState<boolean>(false)
 
   const extracted = isLock
     ? pokemons
@@ -39,6 +38,10 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
         return regex.test(pokemon.name)
       })
 
+  const isSelectedAlready = useMemo(() => {
+    return selectedPokemons.has(currentPokemon.id)
+  }, [currentPokemon])
+
   const createDefaultMessage = () => {
     if (extracted.length < 1) {
       return isLock
@@ -49,14 +52,14 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   }
 
   const createModalContent = () => {
-    if (isSelected) {
-      return `내 보괌함에서 no.${currentPokemon.no} ${currentPokemon.name} 을(를) 삭제하시겠습니까?`
+    if (isSelectedAlready) {
+      return `내 보관함에서 no.${currentPokemon.no} ${currentPokemon.name} 을(를) 삭제하시겠습니까?`
     }
     return `내 보관함에 no.${currentPokemon.no} ${currentPokemon.name} 을(를) 추가하시겠습니까?`
   }
 
   const createModalOkText = () => {
-    if (isSelected) {
+    if (isSelectedAlready) {
       return '삭제'
     }
     return '보관'
@@ -69,7 +72,6 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     }
   }
 
-  // TODO: useEffect로 분리 및 보관함에서도 변동하도록 수정
   const correctOwnMedals = () => {
     const myMedals = new Set<number>()
     const legendPokemons = [150, 151, 152, 153, 154, 155, 156, 157, 158, 159]
@@ -136,18 +138,15 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     dispatch(insertMedals(myMedals))
   }
 
-  // TODO: Array를 Set으로 변경
   const okHandler = () => {
-    setIsOpenModal(false)
     const newSet = new Set(selectedPokemons)
-
-    if (isSelected) {
+    if (isSelectedAlready) {
       newSet.delete(currentPokemon.id)
-      dispatch(selectPokemon(newSet))
     } else {
       newSet.add(currentPokemon.id)
-      dispatch(selectPokemon(newSet))
     }
+    dispatch(selectPokemon(newSet))
+    setIsOpenModal(false)
   }
 
   const cancelHandler = () => {
@@ -159,12 +158,9 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   }, [])
 
   useEffect(() => {
-    setIsSelected(selectedPokemons.has(currentPokemon.id))
-  }, [currentPokemon])
-
-  useEffect(() => {
     correctOwnMedals()
   }, [selectedPokemons])
+
   return (
     <div className="pokemon-list-layout">
       {createDefaultMessage()}
