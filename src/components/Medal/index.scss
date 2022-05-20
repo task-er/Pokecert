@@ -7,26 +7,63 @@ div.medal {
   width: 100px;
   height: 100px;
   overflow-y: hidden;
-  background-image: url('../../assets/images/medal.png');
-  background-color: #03030315;
   cursor: pointer;
 
-  & > div {
+  background-image: url('../../assets/images/medal.png');
+  background-size:  100px 100px;
+  background-color: #03030315;
+  word-break: keep-all;
+
+  & > div.medal-info {
     display: none;
+
+    > p {
+      display: none;
+    }
   }
 
   // 마우스 hover시
   &:hover {
-    opacity: 1;
-    & > div {
+    & > div.medal-info {
       display: block;
+      padding: 0 10px;
+
+      @include tablet-down() {
+        display: inline-block;
+        padding: 0;
+      }
     }
   }
 
 
   @include tablet-down() {
     margin: 3px;
-    width: 80px;
-    height: 80px;
+    width: inherit;
+    display: block;
+    background-image: none;
+    background-color: #03030315;
+
+    & > div.medal-image {
+      display: inline-block;
+      background-image: url('../../assets/images/medal.png');
+      background-size:  80px 80px;
+      width: 80px;
+      height: 80px;
+    }
+
+    & > div.medal-info {
+      display: inline-block;
+      width: calc(100% - 120px);
+      height: 100px;
+
+      &:hover {
+        display: inline-block;
+      }
+
+      & > p {
+        display: flex;
+      }
+    }
+
   }
 }

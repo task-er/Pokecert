@@ -30,12 +30,12 @@ const MedalList = (): ReactElement => {
   return (
     <div className="medal-list-layout">
       {extracted.length < 1 && '보유중인 훈장이 없습니다.'}
-      {extracted.map(({ id, ...medal }: MedalType) => {
+      {extracted.map((medal: MedalType) => {
         return (
           <Medal
-            key={`${id}${medal.name}`}
-            id={id}
-            onClickEvent={openMedalModal({ id, ...medal })}
+            key={`${medal.id}${medal.name}`}
+            medal={medal}
+            onClickEvent={openMedalModal(medal)}
           />
         )
       })}

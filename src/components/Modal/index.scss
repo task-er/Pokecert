@@ -5,8 +5,6 @@ div.modal-inner-box {
   margin: 0 auto;
   border-radius: 1rem;
   padding: 2em;
-  animation-name: show-modal-animation;
-  animation-duration: 0.3s;
   text-align: left;
   grid-template-rows: 3;
   grid-gap: 2em;
@@ -27,9 +25,4 @@ div.modal-inner-box {
       margin: 0 10px;
     }
   }
-}
-
-@keyframes show-modal-animation {
-  from {opacity: 0; }
-  to { opacity: 1; }
 }
