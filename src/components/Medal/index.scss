@@ -30,7 +30,6 @@ div.medal {
 
       @include tablet-down() {
         display: inline-block;
-        padding: 0;
       }
     }
   }
@@ -39,8 +38,11 @@ div.medal {
   @include tablet-down() {
     margin: 3px;
     width: inherit;
-    display: block;
+    display: flex;
     background-image: none;
+    padding: 10px;
+    height: 80px;
+    text-align: left;
     background-color: #03030315;
 
     & > div.medal-image {
@@ -53,8 +55,8 @@ div.medal {
 
     & > div.medal-info {
       display: inline-block;
-      width: calc(100% - 120px);
-      height: 100px;
+      width: calc(100% - 100px);
+      padding-left: 10px;
 
       &:hover {
         display: inline-block;
@@ -62,6 +64,11 @@ div.medal {
 
       & > p {
         display: flex;
+      }
+
+      & > h3 {
+        font-size: 125%;
+        padding: 7px;
       }
     }
 
