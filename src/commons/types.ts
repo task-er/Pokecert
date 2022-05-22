@@ -14,10 +14,6 @@ export interface PokemonType {
   y: number
 }
 
-export interface PokemonsType {
-  pokemons: PokemonType
-}
-
 /* Medal */
 export const DEFAULT_MEDAL = {
   id: 0,
