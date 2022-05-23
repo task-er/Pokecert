@@ -6,13 +6,21 @@ const Complete = (): ReactElement => {
   const navigate = useNavigate()
 
   const goBack = () => {
-    navigate(-1)
+    navigate('/')
+  }
+
+  const downloadPdf = () => {
+    console.log('download')
   }
 
   return (
     <>
-      <div>Empty Page.</div>
+      <div>🎉Congratulations!!!👍</div>
       <button onClick={goBack}>preview</button>
+      <div>
+        모든 띠부띠부씰을 모았습니다.
+        <button onClick={downloadPdf}>Download Certification</button>
+      </div>
     </>
   )
 }
