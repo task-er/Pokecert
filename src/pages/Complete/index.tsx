@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
+import PdfGenerator from '../..//pdf/PdfGenerator'
 
 // note: 해당 페이지는 컬렉션 완료되면 이동되는 페이지로, pdf를 다운받을 수 있다.
 const Complete = (): ReactElement => {
@@ -10,7 +11,9 @@ const Complete = (): ReactElement => {
   }
 
   const downloadPdf = () => {
-    console.log('download')
+    const test = new PdfGenerator()
+    // TODO: 보관함 검증 필요
+    test.download()
   }
 
   return (
