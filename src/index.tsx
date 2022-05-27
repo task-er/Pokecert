@@ -6,6 +6,7 @@ import '@assets/styles/reset.css'
 import '@assets/styles/common.scss'
 import { Provider } from 'react-redux'
 import store from './redux/config'
+import './index.scss'
 
 ReactDOM.render(
   <React.StrictMode>

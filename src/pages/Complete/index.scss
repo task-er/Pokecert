@@ -1,0 +1,15 @@
+@import '../../assets/styles/responsive.scss';
+
+div.complete-wrapper {
+  display: flex;
+  background-color: #333;
+  box-sizing: border-box;
+  text-align: center;
+  height: 100vh;
+  padding: 30px 10%;
+  align-items: center;
+
+  @include tablet-down() {
+    padding: 5px 5px;
+  }
+}

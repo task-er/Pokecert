@@ -7,10 +7,10 @@ interface ModalProps {
   title?: string
   content: string
   onOkText?: string
-  onOkEvent?: () => void | React.MouseEventHandler<HTMLDivElement>
+  onOkEvent?(): void | React.MouseEventHandler<HTMLDivElement>
   onCancelText?: string
-  onCancelEvent?: () => void | React.MouseEventHandler<HTMLDivElement>
-  onClickOutsideEvent?: () => void | React.MouseEventHandler<HTMLDivElement>
+  onCancelEvent?(): void | React.MouseEventHandler<HTMLDivElement>
+  onClickOutsideEvent?(): void | React.MouseEventHandler<HTMLDivElement>
 }
 const Modal = ({
   isOpen,

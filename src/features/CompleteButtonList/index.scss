@@ -1,24 +1,23 @@
 @import '../../assets/styles/responsive.scss';
 
-div.home-button-list-layout {
-  display: grid;
-  grid-template-columns: auto auto;
+div.complete-button-list-layout {
   align-items: flex-end;
   gap: 10px;
   max-width: 800px;
   margin: 0 auto;
 
-  & > button {
-    grid-column: 1 / 3;
-  }
-
   & > h1.main-title {
     grid-column: 1 / 3;
     color: #eee;
-    font-size: 500%;
+    font-size: 300%;
 
     @include tablet-down() {
       font-size: 250%;
     }
+  }
+
+  & > .content-box {
+    padding: 40px 10px;
+    color: #eee;
   }
 }
