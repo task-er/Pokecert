@@ -10,14 +10,14 @@ interface PageTopProps {
 const PageTop = ({ title }: PageTopProps): ReactElement => {
   const navigate = useNavigate()
 
-  const goBack = () => {
+  const moveToHome = () => {
     navigate('/')
   }
 
   return (
     <div className="page-top-layout">
       <PageTitle title={title} />
-      <button onClick={goBack}>◀ 이전</button>
+      <button onClick={moveToHome}>◀ 이전</button>
       <SearchBox />
     </div>
   )

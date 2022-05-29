@@ -3,6 +3,7 @@ import { createLogger } from 'redux-logger'
 import { selectPokemonSlice } from './selectPokemonSlice'
 import { findPokemonSlice } from './findPokemonSlice'
 import { hasMedalSlice } from './hasMedalSlice'
+import { checkIsCompleteSlice } from './checkIsComplete'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 const logger = createLogger()
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   selectPokemonSlice: selectPokemonSlice.reducer,
   hasMedalSlice: hasMedalSlice.reducer,
   findPokemonSlice: findPokemonSlice.reducer,
+  checkIsCompleteSlice: checkIsCompleteSlice.reducer,
 })
 
 const store = configureStore({

@@ -6,7 +6,7 @@ import PdfGenerator from '../../pdf/PdfGenerator'
 const HomeButtonList = (): ReactElement => {
   const navigate = useNavigate()
 
-  const goBack = () => {
+  const moveToHome = () => {
     navigate('/')
   }
 
@@ -20,7 +20,7 @@ const HomeButtonList = (): ReactElement => {
     <div className="complete-button-list-layout">
       <h1 className="main-title">🎉Congratulations!!!👍</h1>
       <div className="content-box">모든 띠부띠부씰을 모았습니다.</div>
-      <button className="styled-button" onClick={goBack}>
+      <button className="styled-button" onClick={moveToHome}>
         Go to first page
       </button>
       <button className="styled-button" onClick={downloadPdf}>

@@ -8,6 +8,9 @@ import { selectPokemon } from '@redux/selectPokemonSlice'
 import Modal from '@components/Modal'
 import { findPokemon } from '@redux/findPokemonSlice'
 import { insertMedals } from '@redux/hasMedalSlice'
+import { setIsComplete } from '@redux/checkIsComplete'
+
+import { useNavigate } from 'react-router'
 
 const legendPokemons = [150, 151, 152, 153, 154, 155, 156, 157, 158, 159]
 const ancientPokemons = [143, 144, 145, 146, 147]
@@ -19,6 +22,7 @@ interface PokemonListProps {
 const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   const dispatch = useAppDispatch()
   const { keyword } = useAppSelector((state) => state.findPokemonSlice)
+  const { isComplete } = useAppSelector((state) => state.checkIsCompleteSlice)
   const { selectedPokemons } = useAppSelector(
     (state) => state.selectPokemonSlice,
   )
@@ -26,6 +30,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   const [currentPokemon, setCurrentPokemon] =
     useState<PokemonType>(DEFAULT_POKEMON)
   const [ownedPokemons, setOwnedPokemons] = useState<Array<PokemonType>>([])
+  const navigate = useNavigate()
 
   const initOwnedPokemons = (): void => {
     const temp = isLock
@@ -93,6 +98,23 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     return JSON.stringify(filteredPokemonList) === JSON.stringify(pokemons)
   }
 
+  const moveToComplete = () => {
+    navigate('/complete')
+  }
+
+  const moveToCompleteWhenCollectedAll = () => {
+    if (!isComplete) {
+      dispatch(setIsComplete(true))
+      moveToComplete()
+    }
+  }
+
+  const cancelComplete = () => {
+    if (isComplete) {
+      dispatch(setIsComplete(false))
+    }
+  }
+
   const correctOwnedMedals = (): void => {
     const myMedals = new Set<number>()
     const numberOfPokemons = selectedPokemons.size
@@ -100,6 +122,10 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     // 다 모은 경우
     if (numberOfPokemons >= 159) {
       myMedals.add(10)
+      moveToCompleteWhenCollectedAll()
+    } else {
+      // 다 모으지 않은 경우
+      cancelComplete()
     }
 
     // 전설의 포켓몬을 모은 경우
