@@ -1,5 +1,8 @@
 div.page-top-layout {
-  & > button {
+  .move-complete-button {
+    float: left;
+  }
+  button {
     width: 100px;
     height: 45px;
   }
