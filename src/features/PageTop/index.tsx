@@ -4,6 +4,7 @@ import PageTitle from '@components/PageTitle'
 import './index.scss'
 import SearchBox from '@components/SearchBox'
 import { useAppSelector } from '@redux/config'
+import NumberOfAvailable from '@components/NumberOfAvailable'
 
 interface PageTopProps {
   title: string
@@ -11,6 +12,9 @@ interface PageTopProps {
 const PageTop = ({ title }: PageTopProps): ReactElement => {
   const navigate = useNavigate()
   const { isComplete } = useAppSelector((state) => state.checkIsCompleteSlice)
+  const { selectedPokemons } = useAppSelector(
+    (state) => state.selectPokemonSlice,
+  )
 
   const moveToComplete = () => {
     navigate('/complete')
@@ -27,7 +31,10 @@ const PageTop = ({ title }: PageTopProps): ReactElement => {
           다 모았다!
         </button>
       )}
-      <PageTitle title={title} />
+      <div className="page-top-right">
+        <NumberOfAvailable current={selectedPokemons.size} max={159} />
+        <PageTitle title={title} />
+      </div>
       <button onClick={moveToHome}>◀ 이전</button>
       <SearchBox />
     </div>

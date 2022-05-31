@@ -1,7 +1,14 @@
 div.page-top-layout {
   .move-complete-button {
     float: left;
+    display: block;
   }
+
+  .page-top-right {
+    text-align: right;
+    padding-bottom: 15px;
+  }
+
   button {
     width: 100px;
     height: 45px;

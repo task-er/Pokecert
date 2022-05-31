@@ -4,8 +4,8 @@ import './index.scss'
 interface PageTitleProps {
   title: string
 }
-const PageTitle = ({ title }: PageTitleProps): ReactElement => (
-  <div className="page-title">{title}</div>
-)
+const PageTitle = ({ title }: PageTitleProps): ReactElement => {
+  return <span className="page-title">{title}</span>
+}
 
 export default PageTitle

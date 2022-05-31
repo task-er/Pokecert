@@ -21,7 +21,7 @@ const HomeButtonList = (): ReactElement => {
       <h1 className="main-title">🎉Congratulations!!!👍</h1>
       <div className="content-box">모든 띠부띠부씰을 모았습니다.</div>
       <button className="styled-button" onClick={moveToHome}>
-        Go to first page
+        Go to the first page
       </button>
       <button className="styled-button" onClick={downloadPdf}>
         Download Certification
