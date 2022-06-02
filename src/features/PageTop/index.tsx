@@ -16,11 +16,11 @@ const PageTop = ({ title }: PageTopProps): ReactElement => {
     (state) => state.selectPokemonSlice,
   )
 
-  const moveToComplete = () => {
+  const moveToComplete = (): void => {
     navigate('/complete')
   }
 
-  const moveToHome = () => {
+  const moveToHome = (): void => {
     navigate('/')
   }
 

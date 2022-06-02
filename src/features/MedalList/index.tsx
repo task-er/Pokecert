@@ -20,7 +20,7 @@ const MedalList = (): ReactElement => {
   }
 
   const openMedalModal = (medal: MedalType): (() => void) => {
-    return () => {
+    return (): void => {
       setCurrentMedal(medal)
       setIsOpenModal(true)
     }
