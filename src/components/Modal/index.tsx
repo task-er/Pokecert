@@ -22,7 +22,7 @@ const Modal = ({
   onCancelEvent,
   onClickOutsideEvent,
 }: ModalProps): ReactElement => {
-  const handleKeyPressEsc = () => {
+  const handleKeyPressEsc = (): void => {
     if (onCancelEvent) {
       onCancelEvent()
     } else if (onOkEvent) {
@@ -30,7 +30,7 @@ const Modal = ({
     }
   }
 
-  const handleKeyPressEnter = () => {
+  const handleKeyPressEnter = (): void => {
     if (onOkEvent) {
       onOkEvent()
     }

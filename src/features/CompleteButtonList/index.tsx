@@ -1,20 +1,30 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import './index.scss'
 import { useNavigate } from 'react-router'
 import PdfGenerator from '../../pdf/PdfGenerator'
+import { useAppSelector } from '@redux/config'
 
 const HomeButtonList = (): ReactElement => {
   const navigate = useNavigate()
+  const { isComplete } = useAppSelector((state) => state.checkIsCompleteSlice)
 
-  const moveToHome = () => {
+  const moveToHome = (): void => {
     navigate('/')
   }
 
-  const downloadPdf = () => {
-    const test = new PdfGenerator()
-    // TODO: 보관함 검증 필요
-    test.download()
+  // note: 안정성을 위해 서버에서 받는 것이 좋으나, 해당 프로젝트는 프론트 단에서 다운로드
+  const downloadPdf = (): void => {
+    const pdfGenerator = new PdfGenerator()
+    pdfGenerator.download()
   }
+
+  const checkAuth = (): void => {
+    if (!isComplete) {
+      moveToHome()
+    }
+  }
+
+  useEffect(checkAuth, [])
 
   return (
     <div className="complete-button-list-layout">

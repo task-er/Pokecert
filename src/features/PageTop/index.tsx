@@ -12,11 +12,11 @@ const PageTop = ({ title }: PageTopProps): ReactElement => {
   const navigate = useNavigate()
   const { isComplete } = useAppSelector((state) => state.checkIsCompleteSlice)
 
-  const moveToComplete = () => {
+  const moveToComplete = (): void => {
     navigate('/complete')
   }
 
-  const moveToHome = () => {
+  const moveToHome = (): void => {
     navigate('/')
   }
 
