@@ -47,7 +47,6 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
           const regex = new RegExp(keyword)
           return regex.test(pokemon.name)
         })
-
     setOwnedPokemons(temp)
   }
 
@@ -85,7 +84,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   }
 
   const openPokemonSelectionModal = (pokemon: PokemonType): (() => void) => {
-    return () => {
+    return (): void => {
       setCurrentPokemon(pokemon)
       setIsOpenModal(true)
     }
@@ -98,18 +97,18 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     return JSON.stringify(filteredPokemonList) === JSON.stringify(pokemons)
   }
 
-  const moveToComplete = () => {
+  const moveToComplete = (): void => {
     navigate('/complete')
   }
 
-  const moveToCompleteWhenCollectedAll = () => {
+  const moveToCompleteWhenCollectedAll = (): void => {
     if (!isComplete) {
       dispatch(setIsComplete(true))
       moveToComplete()
     }
   }
 
-  const cancelComplete = () => {
+  const cancelComplete = (): void => {
     if (isComplete) {
       dispatch(setIsComplete(false))
     }
@@ -196,8 +195,8 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   }
 
   useEffect(resetFindPokemon, [])
-  useEffect(initOwnedPokemons, [selectedPokemons, isLock])
-  useEffect(correctOwnedMedals, [selectedPokemons])
+  useEffect(initOwnedPokemons, [selectedPokemons, isLock, keyword])
+  useEffect(correctOwnedMedals, [ownedPokemons])
 
   const drawCealComponents = (): Array<ReactElement> => {
     return ownedPokemons.map(({ id, ...pokemon }: PokemonType) => {
