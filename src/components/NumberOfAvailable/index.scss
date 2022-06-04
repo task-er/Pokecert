@@ -1,4 +1,10 @@
+@import '../../assets/styles/responsive.scss';
+
 .number-of-available {
   color: white;
   font-size: 200%;
+
+  @include phone-down() {
+    display: none;
+  }
 }
