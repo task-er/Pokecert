@@ -121,6 +121,10 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     // 다 모은 경우
     if (numberOfPokemons >= 159) {
       myMedals.add(10)
+      moveToCompleteWhenCollectedAll()
+    } else {
+      // 다 모으지 않은 경우
+      cancelComplete()
     }
 
     // 전설의 포켓몬을 모은 경우
@@ -166,10 +170,6 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     // 1개 이상 모은 경우
     if (numberOfPokemons >= 1) {
       myMedals.add(1)
-      moveToCompleteWhenCollectedAll()
-    } else {
-      // 다 모으지 않은 경우
-      cancelComplete()
     }
 
     dispatch(insertMedals(myMedals))

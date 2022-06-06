@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react'
 import MYEONGSOO_ZION from '../../images/myeongsoo-zion.png'
+import './index.scss'
 
 const ReportSection2 = (): ReactElement => {
   return (
-    <div>
-      <img src={MYEONGSOO_ZION} width={1120} height={500} />
+    <div className="report-section2">
+      <img src={MYEONGSOO_ZION} height={400} />
     </div>
   )
 }
