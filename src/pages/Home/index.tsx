@@ -5,9 +5,9 @@ import './index.scss'
 
 const Home = (): ReactElement => {
   return (
-    <div className="home-wrapper">
+    <section className="home-wrapper">
       <HomeButtonList />
-    </div>
+    </section>
   )
 }
 
