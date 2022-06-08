@@ -5,7 +5,7 @@ import './index.scss'
 // TODO: encoding된 image 사용하도록 변경
 const ReportSection1 = (): ReactElement => {
   return (
-    <div className="report-section1">
+    <section className="report-section1">
       <img
         className="rotate-50 flipH"
         src={FIRE_CRACKER}
@@ -21,7 +21,7 @@ const ReportSection1 = (): ReactElement => {
         height={80}
       />
       <img src={FIRE_CRACKER} width={80} height={80} />
-    </div>
+    </section>
   )
 }
 

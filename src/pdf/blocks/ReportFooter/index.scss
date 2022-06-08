@@ -1,9 +1,10 @@
 .report-footer {
-  height: 50px;
-  background-color: pink;
+  height: 30px;
+  background-color: #fafafa;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
   line-height: 180%;
+  margin-top: 20px;
 }

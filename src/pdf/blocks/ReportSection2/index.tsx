@@ -4,10 +4,10 @@ import './index.scss'
 
 const ReportSection2 = (): ReactElement => {
   return (
-    <div className="report-section2">
+    <section className="report-section2">
       <div className="percent">100 %</div>
       <img src={MYEONGSOO_ZION} width="560px" />
-    </div>
+    </section>
   )
 }
 

@@ -4,10 +4,10 @@ import './index.scss'
 
 const ReportHeader = (): ReactElement => {
   return (
-    <div className="report-header">
+    <header className="report-header">
       <img src={POKEBALL} />
       Pokecert
-    </div>
+    </header>
   )
 }
 
