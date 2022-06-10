@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ChangeEventHandler, ReactElement } from 'react'
 import { useAppDispatch, useAppSelector } from '@redux/config'
 import { findPokemon } from '@redux/findPokemonSlice'
 import './index.scss'
@@ -7,15 +7,18 @@ const SearchBox = (): ReactElement => {
   const { keyword } = useAppSelector((state) => state.findPokemonSlice)
   const dispatch = useAppDispatch()
 
+  const findKeyword: ChangeEventHandler<HTMLInputElement> = (e) => {
+    dispatch(findPokemon(e.target.value))
+  }
+
   return (
     <div className="search-wrapper">
       <input
         type="text"
-        placeholder="검색어를 입력해주세요."
+        placeholder="🔎 검색"
         value={keyword}
-        onChange={(e) => dispatch(findPokemon(e.target.value))}
+        onChange={findKeyword}
       />
-      <input type="button" value="🔎검색" />
     </div>
   )
 }

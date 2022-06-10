@@ -14,6 +14,7 @@ const HomeButtonList = (): ReactElement => {
   const moveToCollectionPage = (): void => {
     navigate('/collection')
   }
+
   return (
     <div className="home-button-list-layout">
       <h1 className="main-title">POKECERT</h1>

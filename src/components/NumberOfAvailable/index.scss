@@ -7,4 +7,9 @@
   @include phone-down() {
     display: none;
   }
+
+  @include tablet-down() {
+    font-size: 130%;
+    line-height: 150%;
+  }
 }

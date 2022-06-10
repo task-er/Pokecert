@@ -1,3 +1,5 @@
+@import '../../assets/styles/responsive.scss';
+
 div.page-top-layout {
   .move-complete-button {
     float: left;
@@ -7,6 +9,10 @@ div.page-top-layout {
   .page-top-right {
     text-align: right;
     padding-bottom: 15px;
+
+    @include phone-down() {
+      padding-bottom: 24px;
+    }
   }
 
   button {

@@ -20,10 +20,21 @@ div.ceal {
   // 블록이 선택되거나 마우스 hover시
   &:hover,
   &.selected {
-    opacity: 1;
     & > div {
       display: block;
     }
+  }
+
+  &.selected {
+    opacity: 1;
+
+    &:hover {
+      opacity: .85;
+    }
+  }
+
+  &:hover {
+    opacity: .6;
   }
 
   // css sprite 가 binary 형태로 되어 있어서 재조정
