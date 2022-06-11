@@ -18,8 +18,8 @@ const HomeButtonList = (): ReactElement => {
   return (
     <div className="home-button-list-layout">
       <h1 className="main-title">POKECERT</h1>
-      <MainImage src={mewtwo} alt="character1" />
-      <MainImage src={mew} alt="character2" />
+      <MainImage src={mewtwo} width={409} height={434} alt="character1" />
+      <MainImage src={mew} width={466} height={531} alt="character2" />
 
       <button className="styled-button" onClick={moveToListPage}>
         띠부띠부씰 선택

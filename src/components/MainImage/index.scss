@@ -1,11 +1,15 @@
-$responsive-character-gap: calc(100vh - 350px);
+@import '../../assets/styles/responsive.scss';
 
 img.main-character {
-  width: 100%;
-  max-width: min(400px, $responsive-character-gap);
+  width: 312px;
+  height: auto;
 
   // height가 너무 작으면 이미지 삭제
-  @media all and (max-height: 500px) {
+  @media all and (max-height: 560px) {
     display: none;
+  }
+
+  @include tablet-down() {
+    width: 200px;
   }
 }
