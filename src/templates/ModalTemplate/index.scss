@@ -7,11 +7,11 @@ div.modal-template-wrapper {
   overflow: hidden;
   top: 0;
   left: 0;
-  background-color: #00000066;
-  
+  background-color: #0006;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease-in-out ;
+  transition: opacity 0.2s ease-in-out;
+
   &.show {
     opacity: 1;
     pointer-events: unset;

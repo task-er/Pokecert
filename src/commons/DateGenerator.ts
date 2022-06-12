@@ -1,9 +1,14 @@
 class DateGenerator {
   private now: Date
+
   private year: number
+
   private month: number
+
   private day: number
+
   private hour: number
+
   private minute: number
 
   constructor() {

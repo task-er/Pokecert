@@ -8,9 +8,8 @@ div.medal {
   height: 100px;
   overflow-y: hidden;
   cursor: pointer;
-
   background-image: url('../../assets/images/medal.png');
-  background-size:  100px 100px;
+  background-size: 100px 100px;
   background-color: #03030315;
   word-break: keep-all;
 
@@ -34,7 +33,6 @@ div.medal {
     }
   }
 
-
   @include tablet-down() {
     margin: 3px;
     width: inherit;
@@ -48,7 +46,7 @@ div.medal {
     & > div.medal-image {
       display: inline-block;
       background-image: url('../../assets/images/medal.png');
-      background-size:  80px 80px;
+      background-size: 80px 80px;
       width: 80px;
       height: 80px;
     }
@@ -71,6 +69,5 @@ div.medal {
         padding: 7px;
       }
     }
-
   }
 }

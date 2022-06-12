@@ -58,7 +58,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     return ownedPokemons.length < 1
   }
 
-  const drawDefaultMessage = (): string | void => {
+  const drawDefaultMessage = (): string | undefined => {
     const isEmptyOwnedPokemons = checkIsEmptyOwnedPokemons()
 
     if (isEmptyOwnedPokemons) {
@@ -66,7 +66,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
         ? '보유중인 포켓몬이 없습니다.'
         : '검색 결과가 일치하지 않습니다.'
     }
-    return
+    return undefined
   }
 
   const createModalContent = (): string => {
@@ -90,11 +90,11 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     }
   }
 
-  const hasPokemons = (pokemons: Array<number>): boolean => {
-    const filteredPokemonList = pokemons.filter((pokemonId: number) => {
+  const hasPokemons = ($pokemons: Array<number>): boolean => {
+    const filteredPokemonList = $pokemons.filter((pokemonId: number) => {
       return selectedPokemons.has(pokemonId)
     })
-    return JSON.stringify(filteredPokemonList) === JSON.stringify(pokemons)
+    return JSON.stringify(filteredPokemonList) === JSON.stringify($pokemons)
   }
 
   const moveToComplete = (): void => {
@@ -211,7 +211,6 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     })
   }
 
-  // TODO: Modal을 상위 컴포넌트에 놓고 redux로 전달
   return (
     <div className="pokemon-list-layout">
       {drawDefaultMessage()}

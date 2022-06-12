@@ -3,16 +3,17 @@ div.search-wrapper {
   text-align: right;
   width: calc(100% - 100px);
 
-  input { 
+  input {
     display: inline-block;
     height: 38px;
   }
+
   input[type="text"] {
-    padding: 0 13px; 
+    padding: 0 13px;
     width: calc(100vw - 230px);
     max-width: 400px;
   }
-  
+
   input[type="button"] {
     height: 46px;
   }

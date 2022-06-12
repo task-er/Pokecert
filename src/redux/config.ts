@@ -1,10 +1,10 @@
 import { combineReducers, configureStore, Dispatch } from '@reduxjs/toolkit'
 import { createLogger } from 'redux-logger'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { selectPokemonSlice } from './selectPokemonSlice'
 import { findPokemonSlice } from './findPokemonSlice'
 import { hasMedalSlice } from './hasMedalSlice'
 import { checkIsCompleteSlice } from './checkIsComplete'
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 const logger = createLogger()
 

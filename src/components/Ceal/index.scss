@@ -29,12 +29,12 @@ div.ceal {
     opacity: 1;
 
     &:hover {
-      opacity: .85;
+      opacity: 0.85;
     }
   }
 
   &:hover {
-    opacity: .6;
+    opacity: 0.6;
   }
 
   // css sprite 가 binary 형태로 되어 있어서 재조정
@@ -54,9 +54,10 @@ div.ceal {
   $row-12: 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147;
 
   $rows: $row-1, $row-2, $row-3, $row-4, $row-5, $row-6, $row-7, $row-8, $row-9, $row-10, $row-11, $row-12;
-  
+
   @for $row_idx from 1 through length($rows) {
     $column: nth($rows, $row_idx);
+
     @for $column_idx from 1 through length($column) {
       $cell: nth($column, $column_idx);
       &.pokemon-sprite-#{$cell} {
@@ -73,6 +74,7 @@ div.ceal {
 
     @for $row_idx from 1 through length($rows) {
       $column: nth($rows, $row_idx);
+
       @for $column_idx from 1 through length($column) {
         $cell: nth($column, $column_idx);
         &.pokemon-sprite-#{$cell} {

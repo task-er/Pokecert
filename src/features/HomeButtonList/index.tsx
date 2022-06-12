@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
+import { useNavigate } from 'react-router'
 import MainImage from '@components/MainImage'
 import mew from '@assets/images/mew.png'
 import mewtwo from '@assets/images/mewtwo.png'
 import './index.scss'
-import { useNavigate } from 'react-router'
 
 const HomeButtonList = (): ReactElement => {
   const navigate = useNavigate()

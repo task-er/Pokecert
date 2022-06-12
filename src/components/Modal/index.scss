@@ -12,14 +12,15 @@ div.modal-inner-box {
   & > h1 {
     font-size: 150%;
   }
+
   & > div.modal-content {
     font-size: 100%;
   }
 
   & > div.modal-button-list {
     margin: 0 auto;
-    
-    &> input[type="button"] {
+
+    & > input[type="button"] {
       width: 100px;
       height: 30px;
       margin: 0 10px;

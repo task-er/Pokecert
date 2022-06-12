@@ -35,12 +35,12 @@ const MedalList = (): ReactElement => {
     return ownedMedals.length < 1
   }
 
-  const drawDefaultMessage = (): string | void => {
+  const drawDefaultMessage = (): string | undefined => {
     const isEmptyOwnedMedal = checkIsEmptyOwnedMedal()
     if (isEmptyOwnedMedal) {
       return '보유중인 훈장이 없습니다.'
     }
-    return
+    return undefined
   }
 
   const drawMedalComponents = (): Array<ReactElement> => {

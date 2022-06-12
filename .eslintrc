@@ -1,25 +1,42 @@
 {
+  "root": true,
   "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier"
-  ],
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "project": "./tsconfig.json"
   },
-  "rules": {
-    // Place to specify ESLint rules.
-    // Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
-  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "settings": {
-    "react": {
-      "version": "detect"
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
     }
   },
-  "ignorePatterns": ["*.config.js"]
+  "ignorePatterns": ["node_modules/", "build/", "*.config.js"],
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "camelcase": "warn",
+    "no-console": "warn",
+    "no-use-before-define": "off",
+    "no-param-reassign": "off",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "prettier/prettier": "error"
+  }
 }

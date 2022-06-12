@@ -13,8 +13,8 @@ const ModalTemplate = ({
 }: ModalTypes): ReactElement => {
   const outsideRef = useRef(null)
 
-  // eslint-disable-next-line
-  const onClickOutside = (e: any) => {
+  const onClickOutside: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    // eslint-disable-next-line
     e.target === outsideRef.current &&
       handleClickOutside &&
       handleClickOutside(e)

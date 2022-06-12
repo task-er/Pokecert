@@ -1,1 +1,21 @@
-{}
+{
+  "projectId": "pokecert",
+  "testFiles": "*.spec.js",
+  "supportFile": false,
+  "screenshotOnRunFailure": false,
+  "video": false,
+  "videoRecording": false,
+  "baseUrl": "http://localhost:3000",
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "videosFolder": "e2e/videos",
+  "screenshotsFolder": "e2e/screenshots",
+  "chromeWebSecurity": true,
+  "retries": 0,
+  "pluginsFile": false,
+
+  "env": {
+    "email": "",
+    "password": ""
+  }
+}

@@ -14,6 +14,7 @@
     font-weight: bold;
     font-size: 250%;
   }
+
   .rotate-15 {
     transform: rotate(15deg);
   }
@@ -29,8 +30,9 @@
   .rotate-255 {
     transform: rotate(255deg);
   }
+
   .flipH {
-    filter: FlipH;
+    filter: fliph;
     -ms-filter: "FlipH";
   }
 

@@ -36,7 +36,7 @@ const Modal = ({
     }
   }
 
-  const handleKeyPressEvent = (event: { key: string }) => {
+  const handleKeyPressEvent = (event: { key: string }): void => {
     switch (event.key) {
       case 'Escape':
         handleKeyPressEsc()
@@ -44,6 +44,7 @@ const Modal = ({
       case 'Enter':
         handleKeyPressEnter()
         break
+      default:
     }
   }
 

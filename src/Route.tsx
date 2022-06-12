@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from '@pages/Home'
 import List from '@pages/List'
 import Collection from '@pages/Collection'
+
 const Complete = lazy(() => import('@pages/Complete'))
 
 // note: Switch 대신 Routes를 사용하고 Route의 Component 대신 element를 사용해야 한다.
