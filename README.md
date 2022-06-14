@@ -9,6 +9,7 @@
   <img src="https://img.shields.io/badge/-SASS-CC6699?logo=sass&logoColor=white&style=flat">
   <img src="https://img.shields.io/badge/-ESLint-4B32C3?logo=eslint&logoColor=white&style=flat">
   <img src="https://img.shields.io/badge/-Stylelint-263238?logo=stylelint&logoColor=white&style=flat">
+  <img src="https://img.shields.io/badge/-Cypress-17202C?logo=cypress&logoColor=white&style=flat">
 </p>
 
 > This is a collection of Pokemon stickers that are popular these days. <br />
