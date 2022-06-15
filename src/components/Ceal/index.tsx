@@ -16,6 +16,7 @@ const Ceal = ({
   return (
     <div
       className={`ceal ${isSelected ? 'selected ' : ''}pokemon-sprite-${no}`}
+      data-cy={`ceal_button_${no}`}
       onClick={onClickEvent}
     >
       <div>

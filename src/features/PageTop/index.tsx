@@ -27,7 +27,11 @@ const PageTop = ({ title }: PageTopProps): ReactElement => {
   return (
     <div className="page-top-layout">
       {isComplete && (
-        <button className="move-complete-button" onClick={moveToComplete}>
+        <button
+          className="move-complete-button"
+          onClick={moveToComplete}
+          data-cy="selection_complete_button"
+        >
           다 모았다!
         </button>
       )}
@@ -35,7 +39,9 @@ const PageTop = ({ title }: PageTopProps): ReactElement => {
         <NumberOfAvailable current={selectedPokemons.size} max={159} />
         <PageTitle title={title} />
       </div>
-      <button onClick={moveToHome}>◀ 이전</button>
+      <button onClick={moveToHome} data-cy="selection_preview_button">
+        ◀ 이전
+      </button>
       <SearchBox />
     </div>
   )

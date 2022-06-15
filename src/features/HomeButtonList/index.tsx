@@ -8,8 +8,8 @@ import './index.scss'
 const HomeButtonList = (): ReactElement => {
   const navigate = useNavigate()
 
-  const moveToListPage = (): void => {
-    navigate('/list')
+  const moveToSelectionPage = (): void => {
+    navigate('/selection')
   }
   const moveToCollectionPage = (): void => {
     navigate('/collection')
@@ -21,10 +21,18 @@ const HomeButtonList = (): ReactElement => {
       <MainImage src={mewtwo} width={409} height={434} alt="character1" />
       <MainImage src={mew} width={466} height={531} alt="character2" />
 
-      <button className="styled-button" onClick={moveToListPage}>
+      <button
+        className="styled-button"
+        onClick={moveToSelectionPage}
+        data-cy="home_selection_button"
+      >
         띠부띠부씰 선택
       </button>
-      <button className="styled-button" onClick={moveToCollectionPage}>
+      <button
+        className="styled-button"
+        onClick={moveToCollectionPage}
+        data-cy="home_collection_button"
+      >
         보관함
       </button>
     </div>

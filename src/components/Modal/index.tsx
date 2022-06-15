@@ -63,14 +63,26 @@ const Modal = ({
   return (
     <ModalTemplate isOpen={isOpen} handleClickOutside={onClickOutsideEvent}>
       <div className="modal-inner-box">
-        <h1>{title}</h1>
-        <div className="modal-content">{content}</div>
+        <h1 data-cy="modal_title_message">{title}</h1>
+        <div className="modal-content" data-cy="modal_content_message">
+          {content}
+        </div>
         <div className="modal-button-list">
           {onOkEvent && (
-            <input type="button" value={onOkText} onClick={onOkEvent} />
+            <input
+              type="button"
+              value={onOkText}
+              onClick={onOkEvent}
+              data-cy="modal_ok_button"
+            />
           )}
           {onCancelEvent && (
-            <input type="button" value={onCancelText} onClick={onCancelEvent} />
+            <input
+              type="button"
+              value={onCancelText}
+              onClick={onCancelEvent}
+              data-cy="modal_cancel_button"
+            />
           )}
         </div>
       </div>

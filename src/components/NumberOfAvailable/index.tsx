@@ -10,7 +10,10 @@ const NumberOfAvailable = ({
   max,
 }: NumberOfAvailableProps): ReactElement => {
   return (
-    <span className="number-of-available">
+    <span
+      className="number-of-available"
+      data-cy="selection_number_of_pokemons_label"
+    >
       ({current} / {max})&nbsp;
     </span>
   )

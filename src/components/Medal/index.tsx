@@ -8,7 +8,11 @@ interface MedalProps {
 }
 const Medal = ({ medal, onClickEvent }: MedalProps): ReactElement => {
   return (
-    <div className="medal" onClick={onClickEvent}>
+    <div
+      className="medal"
+      onClick={onClickEvent}
+      data-cy={`medal_button_${medal.id}`}
+    >
       <div className="medal-image">&nbsp;</div>
       <div className="medal-info">
         <h3>{medal.name}</h3>

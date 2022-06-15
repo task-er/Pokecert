@@ -1,6 +1,6 @@
 @import '../../assets/styles/responsive.scss';
 
-.list-wrapper {
+.selection-wrapper {
   background-color: #333;
   box-sizing: border-box;
   text-align: center;
@@ -12,7 +12,7 @@
     padding: 30px 10px;
   }
 
-  & > div.list-layout {
+  & > div.selection-layout {
     text-align: left;
   }
 }

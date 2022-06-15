@@ -18,6 +18,7 @@ const SearchBox = (): ReactElement => {
         placeholder="🔎 검색"
         value={keyword}
         onChange={findKeyword}
+        data-cy="selection_search_input"
       />
     </div>
   )

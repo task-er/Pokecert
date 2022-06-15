@@ -18,7 +18,7 @@
       }
     }
   },
-  "ignorePatterns": ["node_modules/", "build/", "*.config.js"],
+  "ignorePatterns": ["node_modules/", "build/", "*.config.js", "cypress/"],
   "rules": {
     "react/jsx-filename-extension": "off",
     "@typescript-eslint/explicit-function-return-type": [

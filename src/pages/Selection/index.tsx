@@ -3,10 +3,10 @@ import './index.scss'
 import PokemonList from '@features/PokemonList'
 import PageTop from '@features/PageTop'
 
-const List = (): ReactElement => {
+const Selection = (): ReactElement => {
   return (
-    <section className="list-wrapper">
-      <div className="list-layout">
+    <section className="selection-wrapper">
+      <div className="selection-layout">
         <PageTop title="띠부띠부씰 선택" />
         <PokemonList />
       </div>
@@ -14,4 +14,4 @@ const List = (): ReactElement => {
   )
 }
 
-export default List
+export default Selection

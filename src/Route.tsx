@@ -2,7 +2,7 @@ import React, { ReactElement, Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Home from '@pages/Home'
-import List from '@pages/List'
+import Selection from '@pages/Selection'
 import Collection from '@pages/Collection'
 
 const Complete = lazy(() => import('@pages/Complete'))
@@ -14,7 +14,7 @@ const App = (): ReactElement => (
   <Suspense fallback={<div>loading...</div>}>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/List" element={<List />} />
+      <Route path="/Selection" element={<Selection />} />
       <Route path="/Collection" element={<Collection />} />
       <Route path="/Complete" element={<Complete />} />
       <Route path="/*" element={<>Not Found.</>} />
