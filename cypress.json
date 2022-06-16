@@ -1,7 +1,7 @@
 {
   "projectId": "pokecert",
-  "testFiles": "*.spec.js",
-  "supportFile": false,
+  "testFiles": "**/*.spec.js",
+  "supportFile": "cypress/support/commands.js",
   "screenshotOnRunFailure": false,
   "video": false,
   "videoRecording": false,
@@ -12,7 +12,7 @@
   "screenshotsFolder": "e2e/screenshots",
   "chromeWebSecurity": true,
   "retries": 0,
-  "pluginsFile": false,
+  "pluginsFile": "cypress/plugins/index.js",
 
   "env": {
     "email": "",

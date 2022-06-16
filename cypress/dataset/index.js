@@ -43,4 +43,5 @@ export const SELECTION = {
 export const COMPLETE = {
   BUTTON_DOWNLOAD: wrappedDataset('complete_download_button'),
   BUTTON_HOME: wrappedDataset('complete_home_button'),
+  LABEL_TITLE: wrappedDataset('complete_title_label'),
 }

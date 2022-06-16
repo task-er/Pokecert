@@ -17,7 +17,9 @@ const HomeButtonList = (): ReactElement => {
 
   return (
     <div className="home-button-list-layout">
-      <h1 className="main-title">POKECERT</h1>
+      <h1 className="main-title" data-cy="home_title_label">
+        POKECERT
+      </h1>
       <MainImage src={mewtwo} width={409} height={434} alt="character1" />
       <MainImage src={mew} width={466} height={531} alt="character2" />
 
