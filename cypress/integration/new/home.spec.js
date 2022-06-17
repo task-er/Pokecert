@@ -24,12 +24,6 @@ describe('홈 화면', () => {
         })
     })
   })
-
-  describe('권한 확인', () => {
-    it('Complete 페이지 접근 불가능 확인', () => {
-      cy.checkAccess( `${BASE_URL}/complete`, false)
-    })
-  })
 })
 
 // const sizes = ['iphone-6', 'ipad-2', [1024, 768]]
