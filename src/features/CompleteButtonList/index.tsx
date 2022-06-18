@@ -32,10 +32,18 @@ const HomeButtonList = (): ReactElement => {
         🎉Congratulations!!!👍
       </h1>
       <div className="content-box">모든 띠부띠부씰을 모았습니다.</div>
-      <button className="styled-button" onClick={moveToHome}>
+      <button
+        className="styled-button"
+        onClick={moveToHome}
+        data-cy="complete_home_button"
+      >
         Go to the first page
       </button>
-      <button className="styled-button" onClick={downloadPdf}>
+      <button
+        className="styled-button"
+        onClick={downloadPdf}
+        data-cy="complete_download_button"
+      >
         Download Certification
       </button>
     </div>

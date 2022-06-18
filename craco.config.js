@@ -1,4 +1,5 @@
 const CracoAlias = require("craco-alias");
+const { whenProd } = require("@craco/craco");
 
 module.exports = {
   plugins: [
@@ -11,4 +12,19 @@ module.exports = {
       },
     },
   ],
+  babel: {
+    plugins: [
+        ...whenProd(
+            () => [
+                [
+                    'react-remove-properties',
+                    {
+                        properties: ['data-cy']
+                    }
+                ]
+            ],
+            []
+        )
+    ]
+}
 };

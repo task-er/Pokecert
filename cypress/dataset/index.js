@@ -8,6 +8,7 @@ export const TYPING_OPTIONS = {
 export const HOME = {
   BUTTON_SELECTION: wrappedDataset('home_selection_button'),
   BUTTON_COLLECTION: wrappedDataset('home_collection_button'),
+  LABEL_TITLE: wrappedDataset('home_title_label'),
 }
 
 //////////////////////////// MODAL //////////////////////////////////
@@ -19,16 +20,18 @@ export const MODAL = {
 }
 
 //////////////////////////// MEDAL //////////////////////////////////
-export const MEDAL = new Object()
+const MEDAL_temp = new Object()
 for (let i=1; i<=10; i++) {
-  MEDAL[`BUTTON_MEDAL_${i}`] = wrappedDataset(`medal_button_${i}`)
+  MEDAL_temp[`BUTTON_MEDAL_${i}`] = wrappedDataset(`medal_button_${i}`)
 }
+export const MEDAL = { ...MEDAL_temp }
 
 //////////////////////////// CEAL //////////////////////////////////
-export const CEAL = new Object()
+const CEAL_temp = new Object()
 for (let i=1; i<=159; i++) {
-  MEDAL[`BUTTON_CEAL_${i}`] = wrappedDataset(`ceal_button_${i}`)
+  CEAL_temp[`BUTTON_CEAL_${i}`] = wrappedDataset(`ceal_button_${i}`)
 }
+export const CEAL = { ...CEAL_temp }
 
 //////////////////////////// SELECTION & COLLECTION //////////////////////////////////
 export const SELECTION = {

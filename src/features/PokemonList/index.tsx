@@ -199,12 +199,12 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   useEffect(correctOwnedMedals, [ownedPokemons])
 
   const drawCealComponents = (): Array<ReactElement> => {
-    return ownedPokemons.map(({ id, ...pokemon }: PokemonType) => {
+    return ownedPokemons.map((pokemon: PokemonType) => {
       return (
         <Ceal
-          key={`${id}${pokemon.name}`}
-          isSelected={selectedPokemons.has(id)}
-          onClickEvent={openPokemonSelectionModal({ id, ...pokemon })}
+          key={`${pokemon.id}${pokemon.name}`}
+          isSelected={selectedPokemons.has(pokemon.id)}
+          onClickEvent={openPokemonSelectionModal(pokemon)}
           {...pokemon}
         />
       )
