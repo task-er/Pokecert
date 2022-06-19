@@ -1,4 +1,10 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react'
+import React, {
+  ReactElement,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import './index.scss'
 import { pokemons } from '@commons/pokemon.json'
 import Ceal from '@components/Ceal'
@@ -30,6 +36,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   const [currentPokemon, setCurrentPokemon] =
     useState<PokemonType>(DEFAULT_POKEMON)
   const [ownedPokemons, setOwnedPokemons] = useState<Array<PokemonType>>([])
+  const resetCurrentPokemonBuffer = useRef<typeof setTimeout>()
   const navigate = useNavigate()
 
   const initOwnedPokemons = (): void => {
@@ -183,8 +190,25 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
       newSet.add(currentPokemon.id)
     }
     dispatch(selectPokemon(newSet))
+    // modal opacity 변경되는 동안 데이터 바인딩 이슈로 currentPokemons를 외부로 돌림
+    // TODO: hooks로 구현
+    if (resetCurrentPokemonBuffer.current) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      clearInterval(resetCurrentPokemonBuffer.current as any)
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ;(resetCurrentPokemonBuffer.current as any) = setTimeout(() => {
+      setCurrentPokemon({ ...currentPokemon })
+    }, 200)
+
     setIsOpenModal(false)
   }
+  useEffect(() => {
+    if (resetCurrentPokemonBuffer.current) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      clearInterval(resetCurrentPokemonBuffer.current as any)
+    }
+  }, [currentPokemon])
 
   const cancelHandler = (): void => {
     setIsOpenModal(false)
