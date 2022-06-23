@@ -1,6 +1,5 @@
 import { HOME } from '../../dataset'
 
-// TODO: 사이즈 별로 분리
 describe('홈 화면', () => {
   const BASE_URL = Cypress.config().baseUrl
 
@@ -25,5 +24,3 @@ describe('홈 화면', () => {
     })
   })
 })
-
-// const sizes = ['iphone-6', 'ipad-2', [1024, 768]]

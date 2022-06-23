@@ -1,8 +1,6 @@
 import { CEAL, SELECTION, MODAL, HOME, COMPLETE, MEDAL } from '../../dataset'
-import { medals } from '../../fixtures/medal.json'
 import { pokemons } from '../../fixtures/pokemon.json'
 
-// TODO: 사이즈 별로 분리
 describe('띠부띠부씰 선택 화면', () => {
   const BASE_URL = Cypress.config().baseUrl
 
@@ -27,7 +25,7 @@ describe('띠부띠부씰 선택 화면', () => {
       cy.visit('/selection')
     })
 
-    it('씰 정보 확인', () => {
+    it('씰 추가 정보 확인', () => {
       // 보관함 0개
       cy.get(SELECTION.LABEL_NUMBER_OF_POKEMONS)
         .contains('0 / 159')
@@ -97,6 +95,16 @@ describe('띠부띠부씰 선택 화면', () => {
         .contains('0 / 159')
     })
 
+    it('씰 모달 ESC 이벤트 확인', () => {
+      // 씰 클릭
+      cy.buttonClick(CEAL[`BUTTON_CEAL_${randInt}`])
+      cy.get(MODAL.BUTTON_CANCEL)
+        .type('{esc}')
+
+      cy.get(SELECTION.LABEL_NUMBER_OF_POKEMONS)
+        .contains('0 / 159')
+    })
+
     it('씰 모달 엔터 이벤트 확인', () => {
       // 씰 클릭
       cy.buttonClick(CEAL[`BUTTON_CEAL_${randInt}`])
@@ -138,5 +146,3 @@ describe('띠부띠부씰 선택 화면', () => {
     })
   })
 })
-
-// const sizes = ['iphone-6', 'ipad-2', [1024, 768]]
