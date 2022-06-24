@@ -1,6 +1,6 @@
-import { CEAL, SELECTION, MODAL, HOME, COMPLETE, MEDAL } from '../../dataset'
-import { medals } from '../../fixtures/medal.json'
-import { pokemons } from '../../fixtures/pokemon.json'
+import { CEAL, SELECTION, MODAL, HOME, COMPLETE, MEDAL } from '../dataset'
+import { medals } from '../fixtures/medal.json'
+import { pokemons } from '../fixtures/pokemon.json'
 
 // NOTE: 기기별로 화면 비율 지정해서 e2e 테스트도 가능. ex) iphone-6
 describe('띠부띠부씰 선택 화면', () => {

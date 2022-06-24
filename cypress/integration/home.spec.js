@@ -1,4 +1,4 @@
-import { HOME } from '../../dataset'
+import { HOME } from '../dataset'
 
 describe('홈 화면', () => {
   const BASE_URL = Cypress.config().baseUrl

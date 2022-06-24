@@ -1,5 +1,5 @@
-import { CEAL, SELECTION, MODAL, HOME, COMPLETE, MEDAL } from '../../dataset'
-import { pokemons } from '../../fixtures/pokemon.json'
+import { CEAL, SELECTION, MODAL, HOME, COMPLETE } from '../dataset'
+import { pokemons } from '../fixtures/pokemon.json'
 
 describe('띠부띠부씰 선택 화면', () => {
   const BASE_URL = Cypress.config().baseUrl
