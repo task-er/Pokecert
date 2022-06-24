@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react'
+import React, { ReactElement, useCallback, useRef } from 'react'
 import ITemplates from '../Itemplates'
 import './index.scss'
 
@@ -13,12 +13,15 @@ const ModalTemplate = ({
 }: ModalTypes): ReactElement => {
   const outsideRef = useRef(null)
 
-  const onClickOutside: React.MouseEventHandler<HTMLDivElement> = (e) => {
-    // eslint-disable-next-line
-    e.target === outsideRef.current &&
-      handleClickOutside &&
-      handleClickOutside(e)
-  }
+  const onClickOutside: React.MouseEventHandler<HTMLDivElement> = useCallback(
+    (e) => {
+      // eslint-disable-next-line
+      e.target === outsideRef.current &&
+        handleClickOutside &&
+        handleClickOutside(e)
+    },
+    [handleClickOutside],
+  )
 
   return (
     <div

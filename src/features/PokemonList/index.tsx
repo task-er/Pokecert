@@ -1,5 +1,6 @@
 import React, {
   ReactElement,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -39,7 +40,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
   const resetCurrentPokemonBuffer = useRef<typeof setTimeout>()
   const navigate = useNavigate()
 
-  const initOwnedPokemons = (): void => {
+  const initOwnedPokemons = useCallback((): void => {
     const temp = isLock
       ? pokemons
           .filter((pokemon: PokemonType) => {
@@ -55,17 +56,17 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
           return regex.test(pokemon.name)
         })
     setOwnedPokemons(temp)
-  }
+  }, [isLock, keyword, selectedPokemons])
 
   const isSelectedAlready = useMemo((): boolean => {
     return selectedPokemons.has(currentPokemon.id)
   }, [currentPokemon])
 
-  const checkIsEmptyOwnedPokemons = (): boolean => {
+  const checkIsEmptyOwnedPokemons = useCallback((): boolean => {
     return ownedPokemons.length < 1
-  }
+  }, [ownedPokemons])
 
-  const drawDefaultMessage = (): string | undefined => {
+  const drawDefaultMessage = useCallback((): string | undefined => {
     const isEmptyOwnedPokemons = checkIsEmptyOwnedPokemons()
 
     if (isEmptyOwnedPokemons) {
@@ -74,54 +75,60 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
         : '검색 결과가 일치하지 않습니다.'
     }
     return undefined
-  }
+  }, [checkIsEmptyOwnedPokemons])
 
-  const createModalContent = (): string => {
+  const createModalContent = useCallback((): string => {
     if (isSelectedAlready) {
       return `내 보관함에서 no.${currentPokemon.no} ${currentPokemon.name} 을(를) 삭제하시겠습니까?`
     }
     return `내 보관함에 no.${currentPokemon.no} ${currentPokemon.name} 을(를) 추가하시겠습니까?`
-  }
+  }, [isSelectedAlready, currentPokemon])
 
-  const createModalOkText = (): string => {
+  const createModalOkText = useCallback((): string => {
     if (isSelectedAlready) {
       return '삭제'
     }
     return '보관'
-  }
+  }, [isSelectedAlready])
 
-  const openPokemonSelectionModal = (pokemon: PokemonType): (() => void) => {
-    return (): void => {
-      setCurrentPokemon(pokemon)
-      setIsOpenModal(true)
-    }
-  }
+  const openPokemonSelectionModal = useCallback(
+    (pokemon: PokemonType): (() => void) => {
+      return (): void => {
+        setCurrentPokemon(pokemon)
+        setIsOpenModal(true)
+      }
+    },
+    [],
+  )
 
-  const hasPokemons = ($pokemons: Array<number>): boolean => {
-    const filteredPokemonList = $pokemons.filter((pokemonId: number) => {
-      return selectedPokemons.has(pokemonId)
-    })
-    return JSON.stringify(filteredPokemonList) === JSON.stringify($pokemons)
-  }
+  const hasPokemons = useCallback(
+    ($pokemons: Array<number>): boolean => {
+      const filteredPokemonList = $pokemons.filter((pokemonId: number) => {
+        return selectedPokemons.has(pokemonId)
+      })
+      return JSON.stringify(filteredPokemonList) === JSON.stringify($pokemons)
+    },
+    [selectedPokemons],
+  )
 
-  const moveToComplete = (): void => {
+  const moveToComplete = useCallback((): void => {
     navigate('/complete')
-  }
+  }, [])
 
-  const moveToCompleteWhenCollectedAll = (): void => {
+  const moveToCompleteWhenCollectedAll = useCallback((): void => {
     if (!isComplete) {
       dispatch(setIsComplete(true))
       moveToComplete()
     }
-  }
+  }, [isComplete])
 
-  const cancelComplete = (): void => {
+  const cancelComplete = useCallback((): void => {
     if (isComplete) {
       dispatch(setIsComplete(false))
     }
-  }
+  }, [isComplete])
 
-  const correctOwnedMedals = (): void => {
+  const correctOwnedMedals = useCallback((): void => {
     const myMedals = new Set<number>()
     const numberOfPokemons = selectedPokemons.size
 
@@ -180,9 +187,9 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     }
 
     dispatch(insertMedals(myMedals))
-  }
+  }, [selectedPokemons, moveToCompleteWhenCollectedAll, hasPokemons])
 
-  const okHandler = (): void => {
+  const okHandler = useCallback((): void => {
     const newSet = new Set(selectedPokemons)
     if (isSelectedAlready) {
       newSet.delete(currentPokemon.id)
@@ -202,7 +209,13 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     }, 200)
 
     setIsOpenModal(false)
-  }
+  }, [
+    selectedPokemons,
+    isSelectedAlready,
+    currentPokemon,
+    resetCurrentPokemonBuffer,
+  ])
+
   useEffect(() => {
     if (resetCurrentPokemonBuffer.current) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -210,19 +223,19 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     }
   }, [currentPokemon])
 
-  const cancelHandler = (): void => {
+  const cancelHandler = useCallback((): void => {
     setIsOpenModal(false)
-  }
+  }, [])
 
-  const resetFindPokemon = (): void => {
+  const resetFindPokemon = useCallback((): void => {
     dispatch(findPokemon(''))
-  }
+  }, [])
 
   useEffect(resetFindPokemon, [])
   useEffect(initOwnedPokemons, [selectedPokemons, isLock, keyword])
   useEffect(correctOwnedMedals, [ownedPokemons])
 
-  const drawCealComponents = (): Array<ReactElement> => {
+  const drawCealComponents = useCallback((): Array<ReactElement> => {
     return ownedPokemons.map((pokemon: PokemonType) => {
       return (
         <Ceal
@@ -233,7 +246,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
         />
       )
     })
-  }
+  }, [ownedPokemons, selectedPokemons])
 
   return (
     <div className="pokemon-list-layout">

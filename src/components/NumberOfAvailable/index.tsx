@@ -1,5 +1,6 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useMemo } from 'react'
 import './index.scss'
+import { pokemons } from '@commons/pokemon.json'
 
 interface NumberOfAvailableProps {
   current: number
@@ -7,8 +8,9 @@ interface NumberOfAvailableProps {
 }
 const NumberOfAvailable = ({
   current,
-  max,
 }: NumberOfAvailableProps): ReactElement => {
+  const max = useMemo<number>((): number => pokemons.length, [])
+
   return (
     <span
       className="number-of-available"

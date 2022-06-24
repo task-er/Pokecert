@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PageTitle from '@components/PageTitle'
 import './index.scss'
@@ -16,17 +16,17 @@ const PageTop = ({ title }: PageTopProps): ReactElement => {
     (state) => state.selectPokemonSlice,
   )
 
-  const moveToComplete = (): void => {
+  const moveToComplete = useCallback((): void => {
     navigate('/complete')
-  }
+  }, [])
 
-  const moveToHome = (): void => {
+  const moveToHome = useCallback((): void => {
     navigate('/')
-  }
+  }, [])
 
-  return (
-    <div className="page-top-layout">
-      {isComplete && (
+  const CompleteButton = useMemo((): ReactElement | false => {
+    return (
+      isComplete && (
         <button
           className="move-complete-button"
           onClick={moveToComplete}
@@ -34,7 +34,13 @@ const PageTop = ({ title }: PageTopProps): ReactElement => {
         >
           다 모았다!
         </button>
-      )}
+      )
+    )
+  }, [isComplete])
+
+  return (
+    <div className="page-top-layout">
+      {CompleteButton}
       <div className="page-top-right">
         <NumberOfAvailable current={selectedPokemons.size} max={159} />
         <PageTitle title={title} />

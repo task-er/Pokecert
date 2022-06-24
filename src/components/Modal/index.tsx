@@ -1,5 +1,5 @@
-import React, { ReactElement, useEffect } from 'react'
-import ModalTemplate from '../../templates/ModalTemplate'
+import React, { ReactElement, useCallback, useEffect } from 'react'
+import ModalTemplate from '@templates/ModalTemplate'
 import './index.scss'
 
 interface ModalProps {
@@ -22,40 +22,43 @@ const Modal = ({
   onCancelEvent,
   onClickOutsideEvent,
 }: ModalProps): ReactElement => {
-  const handleKeyPressEsc = (): void => {
+  const handleKeyPressEsc = useCallback((): void => {
     if (onCancelEvent) {
       onCancelEvent()
     } else if (onOkEvent) {
       onOkEvent()
     }
-  }
+  }, [onCancelEvent, onOkEvent])
 
-  const handleKeyPressEnter = (): void => {
+  const handleKeyPressEnter = useCallback((): void => {
     if (onOkEvent) {
       onOkEvent()
     }
-  }
+  }, [onOkEvent])
 
-  const handleKeyPressEvent = (event: { key: string }): void => {
-    switch (event.key) {
-      case 'Escape':
-        handleKeyPressEsc()
-        break
-      case 'Enter':
-        handleKeyPressEnter()
-        break
-      default:
-    }
-  }
+  const handleKeyPressEvent = useCallback(
+    (event: { key: string }): void => {
+      switch (event.key) {
+        case 'Escape':
+          handleKeyPressEsc()
+          break
+        case 'Enter':
+          handleKeyPressEnter()
+          break
+        default:
+      }
+    },
+    [handleKeyPressEnter, handleKeyPressEsc],
+  )
 
-  useEffect(() => {
+  useEffect((): (() => void) => {
     if (isOpen) {
       document.addEventListener('keydown', handleKeyPressEvent, false)
     } else {
       document.removeEventListener('keydown', handleKeyPressEvent, false)
     }
 
-    return () => {
+    return (): void => {
       document.removeEventListener('keydown', handleKeyPressEvent, false)
     }
   }, [isOpen])

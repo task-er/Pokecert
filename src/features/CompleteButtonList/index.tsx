@@ -1,28 +1,28 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAppSelector } from '@redux/config'
-import PdfGenerator from '../../pdf/PdfGenerator'
+import PdfGenerator from '@pdf/PdfGenerator'
 import './index.scss'
 
 const HomeButtonList = (): ReactElement => {
   const navigate = useNavigate()
   const { isComplete } = useAppSelector((state) => state.checkIsCompleteSlice)
 
-  const moveToHome = (): void => {
+  const moveToHome = useCallback((): void => {
     navigate('/')
-  }
+  }, [])
 
   // note: 안정성을 위해 서버에서 받는 것이 좋으나, 해당 프로젝트는 프론트 단에서 다운로드
-  const downloadPdf = (): void => {
+  const downloadPdf = useCallback((): void => {
     const pdfGenerator = new PdfGenerator()
     pdfGenerator.download()
-  }
+  }, [])
 
-  const checkAuth = (): void => {
+  const checkAuth = useCallback((): void => {
     if (!isComplete) {
       moveToHome()
     }
-  }
+  }, [isComplete])
 
   useEffect(checkAuth, [])
 

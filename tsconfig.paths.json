@@ -8,7 +8,12 @@
       "@features/*": ["src/features/*"],
       "@commons/*": ["src/commons/*"],
       "@redux/*": ["src/redux/*"],
-      "@templates/*": ["src/templates/*"]
+      "@templates/*": ["src/templates/*"],
+      "@pdf/*": ["src/pdf/*"],
+
+      "@report-blocks/*": ["src/pdf/blocks/*"],
+      "@report-images/*": ["src/pdf/images/*"],
+      "@report-layout/*": ["src/pdf/layout/*"]
     }
   }
 }

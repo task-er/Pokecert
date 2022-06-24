@@ -1,6 +1,5 @@
 import { CEAL, MODAL, COMPLETE } from '../dataset'
 
-// TODO: 사이즈 별로 분리
 describe('띠부띠부씰 다 모은 경우', () => {
   const BASE_URL = Cypress.config().baseUrl
 

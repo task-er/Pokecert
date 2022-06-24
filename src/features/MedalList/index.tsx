@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import './index.scss'
 import { medals } from '@commons/medal.json'
 import Medal from '@components/Medal'
@@ -12,38 +12,38 @@ const MedalList = (): ReactElement => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false)
   const [ownedMedals, setOwnedMedals] = useState<Array<MedalType>>([])
 
-  const initOwnedMedals = (): void => {
+  const initOwnedMedals = useCallback((): void => {
     const extracted = medals.filter((medal: MedalType) => {
       return myMedals.has(medal.id)
     })
     setOwnedMedals(extracted)
-  }
+  }, [myMedals])
 
-  const openMedalModal = (medal: MedalType): (() => void) => {
+  const openMedalModal = useCallback((medal: MedalType): (() => void) => {
     return (): void => {
       setCurrentMedal(medal)
       setIsOpenModal(true)
     }
-  }
+  }, [])
 
   // toggling으로 변경
-  const cancelHandler = (): void => {
+  const cancelHandler = useCallback((): void => {
     setIsOpenModal(false)
-  }
+  }, [])
 
-  const checkIsEmptyOwnedMedal = (): boolean => {
+  const checkIsEmptyOwnedMedal = useCallback((): boolean => {
     return ownedMedals.length < 1
-  }
+  }, [ownedMedals])
 
-  const drawDefaultMessage = (): string | undefined => {
+  const drawDefaultMessage = useCallback((): string | undefined => {
     const isEmptyOwnedMedal = checkIsEmptyOwnedMedal()
     if (isEmptyOwnedMedal) {
       return '보유중인 훈장이 없습니다.'
     }
     return undefined
-  }
+  }, [checkIsEmptyOwnedMedal])
 
-  const drawMedalComponents = (): Array<ReactElement> => {
+  const drawMedalComponents = useCallback((): Array<ReactElement> => {
     return ownedMedals.map((medal: MedalType) => {
       return (
         <Medal
@@ -53,7 +53,7 @@ const MedalList = (): ReactElement => {
         />
       )
     })
-  }
+  }, [ownedMedals])
 
   useEffect(initOwnedMedals, [myMedals])
 

@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react'
-import FIRE_CRACKER from '../../images/firecracker.png'
+import FIRE_CRACKER from '@report-images/firecracker.png'
 import './index.scss'
 
-// TODO: encoding된 image 사용하도록 변경
 const ReportSection1 = (): ReactElement => {
   return (
     <section className="report-section1">

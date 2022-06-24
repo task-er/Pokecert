@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import MYEONGSOO_ZION from '../../images/myeongsoo-zion.png'
+import MYEONGSOO_ZION from '@report-images/myeongsoo-zion.png'
 import './index.scss'
 
 const ReportSection2 = (): ReactElement => {

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { useNavigate } from 'react-router'
 import MainImage from '@components/MainImage'
 import mew from '@assets/images/mew.png'
@@ -8,12 +8,13 @@ import './index.scss'
 const HomeButtonList = (): ReactElement => {
   const navigate = useNavigate()
 
-  const moveToSelectionPage = (): void => {
+  const moveToSelectionPage = useCallback((): void => {
     navigate('/selection')
-  }
-  const moveToCollectionPage = (): void => {
+  }, [])
+
+  const moveToCollectionPage = useCallback((): void => {
     navigate('/collection')
-  }
+  }, [])
 
   return (
     <div className="home-button-list-layout">

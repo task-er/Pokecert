@@ -1,10 +1,16 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+import React, {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import html2canvas from 'html2canvas'
 import JsPDF from 'jspdf'
-import ReportSection1 from '../blocks/ReportSection1'
-import ReportFooter from '../blocks/ReportFooter'
-import ReportSection2 from '../blocks/ReportSection2'
-import ReportHeader from '../blocks/ReportHeader'
+import ReportSection1 from '@report-blocks/ReportSection1'
+import ReportFooter from '@report-blocks/ReportFooter'
+import ReportSection2 from '@report-blocks/ReportSection2'
+import ReportHeader from '@report-blocks/ReportHeader'
 
 // Note: FE단에서 canvas로 조립하고 바로 pdf로 적용하는 게 아니면 필요 없음.
 const DefaultLayout = (): ReactElement => {
@@ -13,7 +19,7 @@ const DefaultLayout = (): ReactElement => {
   const paperA4Ref = useRef<HTMLDivElement>(null)
   // const pageRef = useRef(1)
 
-  const savePDF = (): void => {
+  const savePDF = useCallback((): void => {
     try {
       const input = paperA4Ref.current
       if (!input) throw new Error('err.')
@@ -46,7 +52,7 @@ const DefaultLayout = (): ReactElement => {
       // eslint-disable-next-line no-console
       console.error(error)
     }
-  }
+  }, [])
 
   useEffect(savePDF, [])
 
