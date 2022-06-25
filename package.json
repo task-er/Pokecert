@@ -13,6 +13,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/redux-logger": "^3.0.9",
+    "cross-env": "^7.0.3",
     "cypress-downloadfile": "^1.2.2",
     "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
@@ -32,8 +33,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "GENERATE_SOURCEMAP=false craco build",
-    "winBuild": "set \"GENERATE_SOURCEMAP=false\" && craco build",
+    "build": "cross-env GENERATE_SOURCEMAP=false craco build",
     "test": "craco test",
     "eject": "craco eject",
     "stylelint": "npx stylelint src/**/*.{css,scss}",
