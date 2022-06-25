@@ -66,7 +66,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     return ownedPokemons.length < 1
   }, [ownedPokemons])
 
-  const drawDefaultMessage = useCallback((): string | undefined => {
+  const DefaultMessage = useMemo((): string | undefined => {
     const isEmptyOwnedPokemons = checkIsEmptyOwnedPokemons()
 
     if (isEmptyOwnedPokemons) {
@@ -189,6 +189,23 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     dispatch(insertMedals(myMedals))
   }, [selectedPokemons, moveToCompleteWhenCollectedAll, hasPokemons])
 
+  const clearModalChangeDelay = useCallback((): void => {
+    if (resetCurrentPokemonBuffer.current) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      clearInterval(resetCurrentPokemonBuffer.current as any)
+    }
+  }, [resetCurrentPokemonBuffer.current])
+
+  const pushModalChangeDelay = useCallback((): void => {
+    // modal opacity 변경되는 동안 모달 텍스트 데이터 바인딩 이슈로 currentPokemons를 외부로 돌림
+    clearModalChangeDelay()
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    resetCurrentPokemonBuffer.current = setTimeout(() => {
+      setCurrentPokemon({ ...currentPokemon })
+    }, 200)
+  }, [clearModalChangeDelay, currentPokemon])
+
   const okHandler = useCallback((): void => {
     const newSet = new Set(selectedPokemons)
     if (isSelectedAlready) {
@@ -197,31 +214,14 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
       newSet.add(currentPokemon.id)
     }
     dispatch(selectPokemon(newSet))
-    // modal opacity 변경되는 동안 데이터 바인딩 이슈로 currentPokemons를 외부로 돌림
-    // TODO: hooks로 구현
-    if (resetCurrentPokemonBuffer.current) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      clearInterval(resetCurrentPokemonBuffer.current as any)
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(resetCurrentPokemonBuffer.current as any) = setTimeout(() => {
-      setCurrentPokemon({ ...currentPokemon })
-    }, 200)
-
+    pushModalChangeDelay()
     setIsOpenModal(false)
   }, [
     selectedPokemons,
     isSelectedAlready,
     currentPokemon,
-    resetCurrentPokemonBuffer,
+    pushModalChangeDelay,
   ])
-
-  useEffect(() => {
-    if (resetCurrentPokemonBuffer.current) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      clearInterval(resetCurrentPokemonBuffer.current as any)
-    }
-  }, [currentPokemon])
 
   const cancelHandler = useCallback((): void => {
     setIsOpenModal(false)
@@ -231,11 +231,7 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     dispatch(findPokemon(''))
   }, [])
 
-  useEffect(resetFindPokemon, [])
-  useEffect(initOwnedPokemons, [selectedPokemons, isLock, keyword])
-  useEffect(correctOwnedMedals, [ownedPokemons])
-
-  const drawCealComponents = useCallback((): Array<ReactElement> => {
+  const CealComponents = useMemo((): Array<ReactElement> => {
     return ownedPokemons.map((pokemon: PokemonType) => {
       return (
         <Ceal
@@ -248,10 +244,15 @@ const PokemonList = ({ isLock }: PokemonListProps): ReactElement => {
     })
   }, [ownedPokemons, selectedPokemons])
 
+  useEffect(clearModalChangeDelay, [currentPokemon])
+  useEffect(resetFindPokemon, [])
+  useEffect(initOwnedPokemons, [selectedPokemons, isLock, keyword])
+  useEffect(correctOwnedMedals, [ownedPokemons])
+
   return (
     <div className="pokemon-list-layout">
-      {drawDefaultMessage()}
-      {drawCealComponents()}
+      {DefaultMessage}
+      {CealComponents}
       <Modal
         isOpen={isOpenModal}
         content={createModalContent()}

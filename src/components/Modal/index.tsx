@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useEffect } from 'react'
+import React, { ReactElement, useCallback, useEffect, useMemo } from 'react'
 import ModalTemplate from '@templates/ModalTemplate'
 import './index.scss'
 
@@ -51,6 +51,32 @@ const Modal = ({
     [handleKeyPressEnter, handleKeyPressEsc],
   )
 
+  const OkButton = useMemo(() => {
+    return (
+      onOkEvent && (
+        <input
+          type="button"
+          value={onOkText}
+          onClick={onOkEvent}
+          data-cy="modal_ok_button"
+        />
+      )
+    )
+  }, [onOkEvent, onOkText])
+
+  const CancelButton = useMemo(() => {
+    return (
+      onCancelEvent && (
+        <input
+          type="button"
+          value={onCancelText}
+          onClick={onCancelEvent}
+          data-cy="modal_cancel_button"
+        />
+      )
+    )
+  }, [onCancelText, onCancelEvent])
+
   useEffect((): (() => void) => {
     if (isOpen) {
       document.addEventListener('keydown', handleKeyPressEvent, false)
@@ -71,22 +97,8 @@ const Modal = ({
           {content}
         </div>
         <div className="modal-button-list">
-          {onOkEvent && (
-            <input
-              type="button"
-              value={onOkText}
-              onClick={onOkEvent}
-              data-cy="modal_ok_button"
-            />
-          )}
-          {onCancelEvent && (
-            <input
-              type="button"
-              value={onCancelText}
-              onClick={onCancelEvent}
-              data-cy="modal_cancel_button"
-            />
-          )}
+          {OkButton}
+          {CancelButton}
         </div>
       </div>
     </ModalTemplate>

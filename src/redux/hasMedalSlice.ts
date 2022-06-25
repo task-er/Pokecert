@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-//
 export const hasMedalSlice = createSlice({
   name: 'hasMedal',
   initialState: {

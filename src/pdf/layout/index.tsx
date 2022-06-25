@@ -17,7 +17,6 @@ const DefaultLayout = (): ReactElement => {
   // A4 resolution /4
   const [doc] = useState<JsPDF>(new JsPDF('p', 'px', [620, 879]))
   const paperA4Ref = useRef<HTMLDivElement>(null)
-  // const pageRef = useRef(1)
 
   const savePDF = useCallback((): void => {
     try {
@@ -37,14 +36,6 @@ const DefaultLayout = (): ReactElement => {
       }).then(async (canvas) => {
         const imgData = canvas.toDataURL()
 
-        // setCurrentPage((prev) => prev + 1)
-        // const num = document.getElementById('pageNum')
-        // if (num) {
-        //   num.innerHTML = '02 / 02'
-        // }
-
-        // 2페이지
-        // doc.addPage()
         doc.addImage(imgData, 30, 60, 560, 759)
         doc.save('certification.pdf')
       })

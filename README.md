@@ -26,25 +26,19 @@
 ## Install
 
 ```sh
-npm install
+yarn
 ```
 
 ## Usage
 
 ```sh
-npm start
+yarn start
 ```
 
 ## Cypress Usage
 ```sh
-yarn cypress open
+yarn test:cypress:open
 ```
-
-## Stylelint Usage
-```sh
-yarn stylelint
-```
-
 
 ## Author
 

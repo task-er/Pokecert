@@ -1,4 +1,10 @@
-import React, { ReactElement, useCallback, useEffect, useState } from 'react'
+import React, {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import './index.scss'
 import { medals } from '@commons/medal.json'
 import Medal from '@components/Medal'
@@ -26,7 +32,6 @@ const MedalList = (): ReactElement => {
     }
   }, [])
 
-  // toggling으로 변경
   const cancelHandler = useCallback((): void => {
     setIsOpenModal(false)
   }, [])
@@ -35,7 +40,7 @@ const MedalList = (): ReactElement => {
     return ownedMedals.length < 1
   }, [ownedMedals])
 
-  const drawDefaultMessage = useCallback((): string | undefined => {
+  const DefaultMessage = useMemo((): string | undefined => {
     const isEmptyOwnedMedal = checkIsEmptyOwnedMedal()
     if (isEmptyOwnedMedal) {
       return '보유중인 훈장이 없습니다.'
@@ -43,7 +48,7 @@ const MedalList = (): ReactElement => {
     return undefined
   }, [checkIsEmptyOwnedMedal])
 
-  const drawMedalComponents = useCallback((): Array<ReactElement> => {
+  const MedalComponents = useMemo((): Array<ReactElement> => {
     return ownedMedals.map((medal: MedalType) => {
       return (
         <Medal
@@ -59,8 +64,8 @@ const MedalList = (): ReactElement => {
 
   return (
     <div className="medal-list-layout">
-      {drawDefaultMessage()}
-      {drawMedalComponents()}
+      {DefaultMessage}
+      {MedalComponents}
       <Modal
         isOpen={isOpenModal}
         title={currentMedal.name}
