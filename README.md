@@ -15,6 +15,11 @@
 > This is a collection of Pokemon stickers that are popular these days. <br />
 > finally, a certificate can be generated.
 > &nbsp; <br /><br />
+> ![img (1)](https://user-images.githubusercontent.com/102871888/176445892-bfba4591-81f0-4a2f-8418-156099105748.gif) <br />
+> ▲ Mobile <br />
+> It can be run on mobile, desktop. cypress testing is also possible. <br />
+> More? > https://common-dev.tistory.com/entry/Pokecert
+> <br /> &nbsp;
 
 ### 🏠 [Homepage](https://common-dev.tistory.com/entry/Pokecert)
 
